@@ -1,0 +1,32 @@
+services:
+  api:
+    container_name: CommandCentralAPI
+    build: .
+    ports:
+      - 5100:5067
+      - 5200:7199
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: 5067;7199
+
+  db:
+    container_name: CommandCentralDB
+    image: postgres:16
+    restart: on-failure
+    environment:
+      POSTGRES_DB: cca_db
+      POSTGRES_USER: cca
+      POSTGRES_PASSWORD: cca_pass
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d cca_db -U cca"]
+      interval: 1s
+      retries: 120
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgres/data
+volumes:
+  db:
