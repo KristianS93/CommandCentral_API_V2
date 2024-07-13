@@ -9,19 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/appsettings.JwtSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/AuthDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/CCAIdentity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/Models/LoginUserDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/Models/RegisterUserDTO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/RegisterIdentityApp.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/RegisterIdentityServices.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/identity/Roles.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/identity/AuthService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/identity/IAuthService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/identity/Models/JwtSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/API/API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/identity/AuthDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/AuthDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/identity/CCAIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/Models/CCAIdentity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/identity/RegisterIdentityApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/RegisterIdentityApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/identity/RegisterIdentityServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/RegisterIdentityServices.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +39,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66f640a747ba4421a79322cdff02ab8070600/14/21e129df/DataProtectionServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d217357e3fed4e88bf9833da3bf2177012000/1a/63aef5e0/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d217357e3fed4e88bf9833da3bf2177012000/36/3b8caef2/IdentityUser.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7131fcb823152524b974cf9714eeea465987b9aeec2f874695367eabeddb/Error.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -113,13 +113,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720877765806</updated>
-      <workItem from="1720877767469" duration="10294000" />
+      <workItem from="1720877767469" duration="18365000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

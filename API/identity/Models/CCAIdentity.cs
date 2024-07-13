@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace API.identity;
+namespace API.identity.Models;
 
 public class CCAIdentity : IdentityUser
 {

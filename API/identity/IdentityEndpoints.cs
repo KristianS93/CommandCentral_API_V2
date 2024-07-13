@@ -10,33 +10,54 @@ public static class IdentityEndpoints
     {
         var user = app.MapGroup("/user").WithOpenApi();
 
-        user.MapPost("/register", async ([FromBody]RegisterUserDTO user) =>
+        user.MapPost("/register", async ([FromBody]RegisterUserDTO user, AuthService authService) =>
         {
-            
+            var result = await authService.Register(user);
+
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok();
         }).WithName("RegisterUser").AllowAnonymous();
 
-        user.MapPost("/login", async ([FromBody]LoginUserDTO user) =>
+        user.MapPost("/login", async ([FromBody]LoginUserDTO user, AuthService authService) =>
         {
-            
+            var result = await authService.Login(user);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok(new {token = result.Value});
+
         }).WithName("LoginUser").AllowAnonymous();
 
         user.MapGet("/", async () =>
         {
+            await Task.Delay(1);
+
 
         }).WithName("GetUsers").RequireAuthorization(Roles.Admin);
 
         user.MapGet("/{id}", async (string id) =>
         {
+            await Task.Delay(1);
+
 
         }).WithName("GetUser").RequireAuthorization(Roles.Admin);
 
         user.MapPut("/{id}", async (string id) =>
         {
+            await Task.Delay(1);
+
 
         }).WithName("EdituUser").RequireAuthorization(Roles.Member);
 
         user.MapDelete("/{id}", async (string id) =>
         {
+            await Task.Delay(1);
 
         }).WithName("DeleteUser").RequireAuthorization(Roles.Admin);
         

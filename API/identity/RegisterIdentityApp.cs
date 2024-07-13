@@ -1,3 +1,4 @@
+using API.identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,4 +1,5 @@
 using System.Text;
+using API.identity.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ public static class RegisterIdentityServices
         // Connection string
         var connectionString = configuration.GetConnectionString("Postgres");
         ArgumentNullException.ThrowIfNullOrEmpty(connectionString);
+
+        services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
         services.AddDbContext<AuthDbContext>(options => { options.UseNpgsql(connectionString).UseLowerCaseNamingConvention(); });
         
@@ -58,16 +61,20 @@ public static class RegisterIdentityServices
                     ClockSkew = TimeSpan.Zero,
                     ValidIssuer = configuration["JwtSettings:Issuer"],
                     ValidAudience = configuration["JwtSettings:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Guid.NewGuid().ToString()))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]!))
                 };
             });
-        
         // DI
         
         // Token configuration
         
         // Authorization configuration
 
+
+        services.AddDataProtection();
+
+        services.AddTransient<AuthService>();
+        
         return services;
     }
 }
