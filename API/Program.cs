@@ -1,4 +1,5 @@
 using API;
+using API.identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureEnvironment();
 
 // Add services to the container.
+
+builder.Services.AddIdentityServices(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -39,6 +43,10 @@ else
 }
 
 app.UseHttpsRedirection();
+
+await app.AddIdentityApp();
+
+app.AddIdentityEndpoints();
 
 app.MapGet("/weatherforecast", (HttpContext httpContext) =>
     {
