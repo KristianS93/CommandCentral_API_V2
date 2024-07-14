@@ -36,7 +36,6 @@ public static class IdentityEndpoints
 
         user.MapGet("/", async (UserService userService) =>
         {
-            Console.WriteLine("In users");
             var result = await userService.Getusers();
             if (result.IsFailed)
             {
@@ -48,11 +47,14 @@ public static class IdentityEndpoints
 
         }).RequireAuthorization(Roles.Admin);
 
-        user.MapGet("/{id}", async (string id) =>
+        user.MapGet("/{id}", async (string id, UserService userService) =>
         {
-            await Task.Delay(1);
-
-
+            var result = await userService.GetUser(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok(result.Value);
         }).WithName("GetUser").RequireAuthorization(Roles.Admin);
 
         user.MapPut("/{id}", async (string id) =>
@@ -62,9 +64,15 @@ public static class IdentityEndpoints
 
         }).WithName("EditUser").RequireAuthorization(Roles.Member);
 
-        user.MapDelete("/{id}", async (string id) =>
+        user.MapDelete("/{id}", async (string id, UserService userService) =>
         {
-            await Task.Delay(1);
+            var result = await userService.DeleteUser(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok();
 
         }).WithName("DeleteUser").RequireAuthorization(Roles.Admin);
         

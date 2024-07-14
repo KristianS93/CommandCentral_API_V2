@@ -21,6 +21,29 @@ public class UserService
             return Result.Ok(new List<UserDTO>());
         }
 
-        return Result.Ok(users.Select(u => new UserDTO(u.Id, u.UserName!, u.Email!, u.Firstname!, u.Lastname, u.HouseholdId, "Commin")).ToList());
+        return Result.Ok(users.Select(u => new UserDTO(u.Id, u.UserName!, u.Email!, u.Firstname!, u.Lastname, u.HouseholdId, "Comming")).ToList());
+    }
+
+    public async Task<Result<UserDTO>> GetUser(string id)
+    {
+        
+        var user = await _userManager.FindByIdAsync(id);
+        if (user is null || user.Id.IsNullOrEmpty() || user.UserName.IsNullOrEmpty() || user.Email.IsNullOrEmpty())
+        {
+            return Result.Fail("No user with that id!");
+        }
+
+        return Result.Ok(new UserDTO(user!.Id, user.UserName!, user.Email!, user.Firstname, user.Lastname, user.HouseholdId, "Comming"));
+    }
+
+    public async Task<Result> DeleteUser(string id)
+    {
+        var user = await _userManager.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+        if (user is null)
+        {
+            return Result.Fail("Could not delete user");
+        }
+        await _userManager.DeleteAsync(user);
+        return Result.Ok();
     }
 }

@@ -92,14 +92,14 @@ public static class RegisterIdentityServices
         
         // Authorization
 
-        services.AddAuthorizationBuilder().AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
+        // services.AddAuthorizationBuilder().AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
         
-        // services.AddAuthorization(options =>
-        // {
-        //     options.AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
-        //     options.AddPolicy(Roles.Owner, policy => policy.RequireRole(Roles.Admin, Roles.Owner));
-        //     options.AddPolicy(Roles.Member, policy => policy.RequireRole(Roles.Admin, Roles.Owner, Roles.Member));
-        // });
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
+            options.AddPolicy(Roles.Owner, policy => policy.RequireRole(Roles.Admin, Roles.Owner));
+            options.AddPolicy(Roles.Member, policy => policy.RequireRole(Roles.Admin, Roles.Owner, Roles.Member));
+        });
         // DI
         
         // Token configuration
