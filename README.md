@@ -29,3 +29,4 @@
 # Migration commands
 - `dotnet ef migrations add InitialAPIMigration -o ./SharedAPI/Persistence/Migrations/ -c ApiDbContext`
 - `dotnet ef migrations add InitialMigration -o ./Identity/Migrations/ -c AuthDbContext`
+- `dotnet ef migrations add InitialMigration -o ./SharedAPI/Persistence/Migrations`
