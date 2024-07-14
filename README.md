@@ -3,12 +3,12 @@
 # Todo
 
 - User
-  - Create user
-  - Login User
-  - Get users
-  - Get user
-  - Edit user
-  - Delete user
+  - [x] Create user
+  - [x] Login User
+  - [x] Get users
+  - [x] Get user
+  - [x] Edit user (*)
+  - [x] Delete user
 - Household
   - Register Household - POST
   - Edit Household
