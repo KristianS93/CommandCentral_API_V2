@@ -1,5 +1,6 @@
 using System.Text;
 using API.identity.Models;
+using API.SharedAPI.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -41,16 +42,12 @@ public static class RegisterIdentityServices
             });
         });
         
-        // Connection string
-        var connectionString = configuration.GetConnectionString("Postgres");
-        ArgumentNullException.ThrowIfNullOrEmpty(connectionString);
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
-        services.AddDbContext<AuthDbContext>(options => { options.UseNpgsql(connectionString).UseLowerCaseNamingConvention(); });
         
         services.AddIdentity<CCAIdentity, IdentityRole>()
-            .AddEntityFrameworkStores<AuthDbContext>();
+            .AddEntityFrameworkStores<ApiDbContext>();
 
         services.Configure<IdentityOptions>(options =>
         {

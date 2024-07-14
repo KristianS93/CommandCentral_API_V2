@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using API.Household.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace API.identity.Models;
@@ -10,6 +11,4 @@ public class CCAIdentity : IdentityUser
     
     [Required]
     public string Lastname { get; set; } = string.Empty;
-
-    public string HouseholdId { get; set; } = string.Empty;
 }

@@ -1,5 +1,7 @@
 using API;
 using API.identity;
+using API.SharedAPI;
+using API.SharedAPI.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Logging.AddDebug();
 
 // Add services to the container.
 
+builder.Services.AddSharedServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -46,7 +49,9 @@ else
 
 app.UseHttpsRedirection();
 
+await app.AddSharedApp();
 await app.AddIdentityApp();
+// await app.AddRawTables();
 
 app.AddIdentityEndpoints();
 

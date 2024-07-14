@@ -1,4 +1,5 @@
 using API.identity.Models;
+using API.SharedAPI.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,11 +10,6 @@ public static class RegisterIdentityApp
     public static async Task<WebApplication> AddIdentityApp(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
-        
-        // ensure migration
-
-        var dbContext = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
-        await dbContext.Database.MigrateAsync();
         
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<CCAIdentity>>();

@@ -21,7 +21,7 @@ public class UserService
             return Result.Ok(new List<UserDTO>());
         }
 
-        return Result.Ok(users.Select(u => new UserDTO(u.Id, u.UserName!, u.Email!, u.Firstname!, u.Lastname, u.HouseholdId, "Comming")).ToList());
+        return Result.Ok(users.Select(u => new UserDTO(u.Id, u.UserName!, u.Email!, u.Firstname!, u.Lastname, "Comming")).ToList());
     }
 
     public async Task<Result<UserDTO>> GetUser(string id)
@@ -33,7 +33,7 @@ public class UserService
             return Result.Fail("No user with that id!");
         }
 
-        return Result.Ok(new UserDTO(user!.Id, user.UserName!, user.Email!, user.Firstname, user.Lastname, user.HouseholdId, "Comming"));
+        return Result.Ok(new UserDTO(user!.Id, user.UserName!, user.Email!, user.Firstname, user.Lastname, "Comming"));
     }
 
     public async Task<Result> DeleteUser(string id)
@@ -58,7 +58,6 @@ public class UserService
         identity.Lastname = user.lastname;
         identity.UserName = user.username;
         identity.Email = user.email;
-        identity.HouseholdId = user.householdid;
         var x = await _userManager.UpdateAsync(identity);
         if (!x.Succeeded)
         {
