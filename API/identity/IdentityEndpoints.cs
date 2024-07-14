@@ -19,7 +19,7 @@ public static class IdentityEndpoints
                 return Results.BadRequest(result.Errors);
             }
 
-            return Results.Ok();
+            return Results.Created();
         }).WithName("RegisterUser").AllowAnonymous();
 
         user.MapPost("/login", async ([FromBody]LoginUserDTO user, AuthService authService) =>
@@ -34,12 +34,19 @@ public static class IdentityEndpoints
 
         }).WithName("LoginUser").AllowAnonymous();
 
-        user.MapGet("/", async () =>
+        user.MapGet("/", async (UserService userService) =>
         {
-            await Task.Delay(1);
+            Console.WriteLine("In users");
+            var result = await userService.Getusers();
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok(result.Value);
 
 
-        }).WithName("GetUsers").RequireAuthorization(Roles.Admin);
+        }).RequireAuthorization(Roles.Admin);
 
         user.MapGet("/{id}", async (string id) =>
         {
@@ -53,7 +60,7 @@ public static class IdentityEndpoints
             await Task.Delay(1);
 
 
-        }).WithName("EdituUser").RequireAuthorization(Roles.Member);
+        }).WithName("EditUser").RequireAuthorization(Roles.Member);
 
         user.MapDelete("/{id}", async (string id) =>
         {

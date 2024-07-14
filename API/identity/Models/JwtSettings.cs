@@ -6,5 +6,5 @@ public class JwtSettings
 
     public string Audience { get; set; } = string.Empty;
 
-    public int DurationInMinutes { get; set; }
+    public double DurationInMinutes { get; set; }
 }

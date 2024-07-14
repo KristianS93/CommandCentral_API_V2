@@ -92,8 +92,7 @@ public class AuthService : IAuthService
             new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
             new Claim("uid", user.Id),
             
-        }
-        .Union(userClaims).Union(roleClaims);
+        }.Union(userClaims).Union(roleClaims);
         
         var token = new JwtSecurityToken(
             issuer: _jwtSettings.Value.Issuer,

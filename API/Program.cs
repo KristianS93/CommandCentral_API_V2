@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configure environment
 builder.ConfigureEnvironment();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 // Add services to the container.
 

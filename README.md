@@ -5,6 +5,10 @@
 - User
   - Create user
   - Login User
+  - Get users
+  - Get user
+  - Edit user
+  - Delete user
 - Household
   - Register Household - POST
   - Edit Household
