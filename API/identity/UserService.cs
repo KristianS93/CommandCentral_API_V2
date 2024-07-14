@@ -38,12 +38,59 @@ public class UserService
 
     public async Task<Result> DeleteUser(string id)
     {
-        var user = await _userManager.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+        var user = await _userManager.FindByIdAsync(id);
         if (user is null)
         {
             return Result.Fail("Could not delete user");
         }
         await _userManager.DeleteAsync(user);
+        return Result.Ok();
+    }
+
+    public async Task<Result> EditUser(UserDTO user)
+    {
+        var identity = await _userManager.FindByIdAsync(user.userId);
+        if (identity is null)
+        {
+            return Result.Fail("User does not exist");
+        }
+        identity.Firstname = user.firstname;
+        identity.Lastname = user.lastname;
+        identity.UserName = user.username;
+        identity.Email = user.email;
+        identity.HouseholdId = user.householdid;
+        var x = await _userManager.UpdateAsync(identity);
+        if (!x.Succeeded)
+        {
+            return Result.Fail(x.Errors.Select(e => new Error(e.Description)));
+        }
+
+        return Result.Ok();
+    }
+
+    public async Task<Result> UpdateRoleAdmin(RoleDTO role)
+    {
+        var identity = await _userManager.FindByIdAsync(role.userid);
+        if (identity is null)
+        {
+            return Result.Fail("No user with that id");
+        }
+        var currentRole = await _userManager.GetRolesAsync(identity);
+        if (currentRole.IsNullOrEmpty())
+        {
+            return Result.Fail("No previous roles exist");
+        }
+        await _userManager.RemoveFromRoleAsync(identity, currentRole.First());
+        var newRole = role.role switch
+        {
+            "Member" => Roles.Member,
+            "Owner" => Roles.Owner,
+            "Administrator" => Roles.Admin,
+            _ => Roles.Member
+        };
+
+        await _userManager.AddToRoleAsync(identity, newRole);
+
         return Result.Ok();
     }
 }

@@ -57,10 +57,16 @@ public static class IdentityEndpoints
             return Results.Ok(result.Value);
         }).WithName("GetUser").RequireAuthorization(Roles.Admin);
 
-        user.MapPut("/{id}", async (string id) =>
+        user.MapPut("/{id}", async (UserDTO user, UserService userService) =>
         {
-            await Task.Delay(1);
+            var result = await userService.EditUser(user);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            // missing change of password
 
+            return Results.Ok();
 
         }).WithName("EditUser").RequireAuthorization(Roles.Member);
 
@@ -75,6 +81,18 @@ public static class IdentityEndpoints
             return Results.Ok();
 
         }).WithName("DeleteUser").RequireAuthorization(Roles.Admin);
+
+        user.MapPut("/role/{id}", async (RoleDTO role, UserService userService) =>
+        {
+            var result = await userService.UpdateRoleAdmin(role);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            // missing change of password
+
+            return Results.Ok();
+        }).WithName("ChangeRoleAdmin").RequireAuthorization(Roles.Admin);
         
         return app;
     }

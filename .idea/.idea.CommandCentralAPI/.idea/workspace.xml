@@ -9,9 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/identity/Models/RoleDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/RegisterIdentityServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/RegisterIdentityServices.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/identity/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/UserService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +108,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720877765806</updated>
-      <workItem from="1720877767469" duration="24511000" />
+      <workItem from="1720877767469" duration="26510000" />
     </task>
     <servers />
   </component>
