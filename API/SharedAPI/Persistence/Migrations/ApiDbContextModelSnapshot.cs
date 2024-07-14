@@ -57,6 +57,11 @@ namespace API.SharedAPI.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("userid");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("role");
+
                     b.HasKey("HouseholdId", "UserId")
                         .HasName("pk_householdusers");
 

@@ -8,37 +8,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/Household/EFConfigurations/HouseholdConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Household/EFConfigurations/HouseholdUserRelationConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Household/Models/HouseholdModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Household/Models/HouseholdUsersModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/SharedAPI/Models/BaseEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/RawTablesRegister.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/WillDelete.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/SharedAPI/SharedAppRegistration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/SharedAPI/SharedServiceRegistration.cs" afterDir="false" />
+    <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="Add relation from Household to users, however only one dbcontext.">
+      <change afterPath="$PROJECT_DIR$/API/Household/HouseholdEndpoints.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Household/HouseholdService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Household/HouseholdServiceRegistration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Household/Models/CreateHouseholdDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/API/API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Household/Models/HouseholdModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/HouseholdModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Household/Models/HouseholdUsersModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/HouseholdUsersModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/AuthDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/IAuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/IdentityEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Migrations/20240713205922_InitialIdentityMigration.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Migrations/20240713205922_InitialIdentityMigration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Migrations/AuthDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Models/CCAIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/CCAIdentity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Models/JwtSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/JwtSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Models/LoginUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/LoginUserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Models/RegisterUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/RegisterUserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Models/RoleDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/RoleDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Models/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/UserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/RegisterIdentityApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/RegisterIdentityApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/RegisterIdentityServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/RegisterIdentityServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/Roles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Roles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240714184108_InitialMigration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240714184108_InitialMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/ApiDbContextModelSnapshot.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +45,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "KristianS93"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KristianS93/CommandCentral_API_V2.git",
+    "accountId": "7bc923a7-ac7c-4256-a91c-7dd446fca2f3"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07e96c28bffa4c5a91a050f708c9513cb108/d3/346c0e19/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66f640a747ba4421a79322cdff02ab8070600/14/21e129df/DataProtectionServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -142,8 +136,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720877765806</updated>
-      <workItem from="1720877767469" duration="39993000" />
+      <workItem from="1720877767469" duration="43362000" />
     </task>
+    <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
+      <option name="closed" value="true" />
+      <created>1720982904898</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720982904898</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,5 +156,7 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Add relation from Household to users, however only one dbcontext." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add relation from Household to users, however only one dbcontext." />
   </component>
 </project>

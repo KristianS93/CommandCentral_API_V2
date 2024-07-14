@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.SharedAPI.Persistence.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240714184108_InitialMigration")]
+    [Migration("20240714193104_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -59,6 +59,11 @@ namespace API.SharedAPI.Persistence.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("text")
                         .HasColumnName("userid");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("role");
 
                     b.HasKey("HouseholdId", "UserId")
                         .HasName("pk_householdusers");

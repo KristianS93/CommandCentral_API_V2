@@ -178,7 +178,8 @@ namespace API.SharedAPI.Persistence.Migrations
                 columns: table => new
                 {
                     householdid = table.Column<string>(type: "text", nullable: false),
-                    userid = table.Column<string>(type: "text", nullable: false)
+                    userid = table.Column<string>(type: "text", nullable: false),
+                    role = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

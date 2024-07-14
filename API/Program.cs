@@ -1,4 +1,5 @@
 using API;
+using API.Household;
 using API.identity;
 using API.SharedAPI;
 using API.SharedAPI.Persistence;
@@ -14,6 +15,7 @@ builder.Logging.AddDebug();
 
 builder.Services.AddSharedServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddHouseholdServices();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -54,14 +56,7 @@ await app.AddIdentityApp();
 // await app.AddRawTables();
 
 app.AddIdentityEndpoints();
-
-app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-    {
-        var forecast = "hello world";
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
+app.AddHouseholdEndpoints();
 
 app.Run();
 
