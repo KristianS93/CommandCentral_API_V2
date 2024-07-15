@@ -10,6 +10,4 @@ public class HouseholdModel : BaseEntity
     public string HouseholdId { get; set; } = string.Empty;
     [Required]
     public string Name { get; set; } = string.Empty;
-
-    public ICollection<HouseholdUsersModel> HouseholdUsers { get; set; } = new List<HouseholdUsersModel>();
 }

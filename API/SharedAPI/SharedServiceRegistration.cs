@@ -1,3 +1,4 @@
+using API.Identity;
 using API.SharedAPI.Persistence;
 using Microsoft.EntityFrameworkCore;
 

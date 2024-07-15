@@ -4,10 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace API.SharedAPI.Persistence.Migrations
+namespace API.Identity.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialIdentityMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,20 +51,6 @@ namespace API.SharedAPI.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_aspnetusers", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "households",
-                columns: table => new
-                {
-                    householdid = table.Column<string>(type: "text", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
-                    lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_households", x => x.householdid);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,31 +159,6 @@ namespace API.SharedAPI.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "householdusers",
-                columns: table => new
-                {
-                    householdid = table.Column<string>(type: "text", nullable: false),
-                    userid = table.Column<string>(type: "text", nullable: false),
-                    role = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_householdusers", x => new { x.householdid, x.userid });
-                    table.ForeignKey(
-                        name: "fk_householdusers_households_householdid",
-                        column: x => x.householdid,
-                        principalTable: "households",
-                        principalColumn: "householdid",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_householdusers_users_userid",
-                        column: x => x.userid,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "ix_aspnetroleclaims_roleid",
                 table: "AspNetRoleClaims",
@@ -234,11 +195,6 @@ namespace API.SharedAPI.Persistence.Migrations
                 table: "AspNetUsers",
                 column: "normalizedusername",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "ix_householdusers_userid",
-                table: "householdusers",
-                column: "userid");
         }
 
         /// <inheritdoc />
@@ -260,13 +216,7 @@ namespace API.SharedAPI.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "householdusers");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "households");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -1,3 +1,4 @@
+using API.Identity;
 using API.SharedAPI.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,7 @@ public static class SharedAppRegistration
         // ensure migration
         var dbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
         await dbContext.Database.MigrateAsync();
-
+        
         return app;
     }
 }

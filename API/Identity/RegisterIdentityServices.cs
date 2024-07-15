@@ -1,4 +1,5 @@
 using System.Text;
+using API.Identity;
 using API.identity.Models;
 using API.SharedAPI.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,6 +14,10 @@ public static class RegisterIdentityServices
 {
     public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
     {
+        // Connection string
+        var connectionString = configuration.GetConnectionString("Postgres");
+        ArgumentNullException.ThrowIfNullOrEmpty(connectionString);
+        services.AddDbContext<AuthDbContext>(options => { options.UseNpgsql(connectionString).UseLowerCaseNamingConvention(); });
         services.AddSwaggerGen(options =>
         {
             options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -47,7 +52,7 @@ public static class RegisterIdentityServices
 
         
         services.AddIdentity<CCAIdentity, IdentityRole>()
-            .AddEntityFrameworkStores<ApiDbContext>();
+            .AddEntityFrameworkStores<AuthDbContext>();
 
         services.Configure<IdentityOptions>(options =>
         {

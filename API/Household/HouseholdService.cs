@@ -1,5 +1,6 @@
 using API.Household.Models;
 using API.identity;
+using API.Identity;
 using API.identity.Models;
 using API.SharedAPI.Persistence;
 using FluentResults;
@@ -27,7 +28,7 @@ public class HouseholdService
         {
             return Result.Fail("Already have a household");
         }
-
+    
         var houseHoldId = Guid.NewGuid().ToString();
         Console.WriteLine("-- New household id " + houseHoldId);
         Console.WriteLine("--- user id "+ householdDto.userId );
@@ -51,6 +52,8 @@ public class HouseholdService
             await _userManager.RemoveFromRoleAsync(user!, currentRole);
             await _userManager.AddToRoleAsync(user!, Roles.Owner);
         }
+
+        await _apiDbContext.SaveChangesAsync();
         
         return Result.Ok();
     }

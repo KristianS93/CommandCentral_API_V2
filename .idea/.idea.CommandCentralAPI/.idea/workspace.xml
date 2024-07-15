@@ -9,18 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="Add relation from Household to users, however only one dbcontext.">
-      <change afterPath="$PROJECT_DIR$/API/Household/HouseholdEndpoints.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Household/HouseholdService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Household/HouseholdServiceRegistration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Household/Models/CreateHouseholdDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/Models/HouseholdModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/HouseholdModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/Models/HouseholdUsersModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/HouseholdUsersModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240714184108_InitialMigration.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240714184108_InitialMigration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/ApiDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/projectSettingsUpdater.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +39,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KristianS93"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KristianS93&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KristianS93/CommandCentral_API_V2.git",
-    "accountId": "7bc923a7-ac7c-4256-a91c-7dd446fca2f3"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KristianS93/CommandCentral_API_V2.git&quot;,
+    &quot;accountId&quot;: &quot;7bc923a7-ac7c-4256-a91c-7dd446fca2f3&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07e96c28bffa4c5a91a050f708c9513cb108/d3/346c0e19/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66f640a747ba4421a79322cdff02ab8070600/14/21e129df/DataProtectionServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -65,9 +59,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7131fcb823152524b974cf9714eeea465987b9aeec2f874695367eabeddb/Error.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2jC4XYXgu7B5RBXsV4G4DaLcMhF" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -90,9 +84,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/Users/kristian/Library/Application Support/Symbols/src"
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/home/kristian/.local/share/Symbols/src"
     ]
   }
 }]]></component>
@@ -137,6 +131,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720877765806</updated>
       <workItem from="1720877767469" duration="43362000" />
+      <workItem from="1720995079440" duration="1069000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />

@@ -16,7 +16,7 @@ public static class HouseholdEndpoints
             {
                 return Results.BadRequest(result.Errors);
             }
-
+        
             return Results.Created();
         });
 

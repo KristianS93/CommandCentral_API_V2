@@ -53,7 +53,7 @@ app.UseHttpsRedirection();
 
 await app.AddSharedApp();
 await app.AddIdentityApp();
-// await app.AddRawTables();
+await app.AddRawTables();
 
 app.AddIdentityEndpoints();
 app.AddHouseholdEndpoints();
