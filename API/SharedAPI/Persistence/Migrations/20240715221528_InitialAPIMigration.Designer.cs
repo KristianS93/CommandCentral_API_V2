@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.SharedAPI.Persistence.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240715212947_InitialAPIMigration")]
+    [Migration("20240715221528_InitialAPIMigration")]
     partial class InitialAPIMigration
     {
         /// <inheritdoc />
@@ -68,7 +68,7 @@ namespace API.SharedAPI.Persistence.Migrations
                     b.HasKey("HouseholdId", "UserId")
                         .HasName("pk_householdusers");
 
-                    b.ToTable("householdusers", (string)null);
+                    b.ToTable("HouseholdUsers", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -51,8 +51,8 @@ else
 
 app.UseHttpsRedirection();
 
-await app.AddSharedApp();
 await app.AddIdentityApp();
+await app.AddSharedApp();
 await app.AddRawTables();
 
 app.AddIdentityEndpoints();

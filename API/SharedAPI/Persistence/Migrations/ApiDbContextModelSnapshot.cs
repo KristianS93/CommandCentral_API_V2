@@ -65,7 +65,7 @@ namespace API.SharedAPI.Persistence.Migrations
                     b.HasKey("HouseholdId", "UserId")
                         .HasName("pk_householdusers");
 
-                    b.ToTable("householdusers", (string)null);
+                    b.ToTable("HouseholdUsers", (string)null);
                 });
 #pragma warning restore 612, 618
         }

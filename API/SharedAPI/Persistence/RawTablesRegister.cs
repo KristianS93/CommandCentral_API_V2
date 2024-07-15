@@ -9,11 +9,12 @@ public static class RawTablesRegister
     {
         using var scope = app.Services.CreateScope();
 
-        var dbContext = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
         
         // household user relation
         var sql = @"
-            CREATE TABLE IF NOT EXISTS HouseholdUsers (
+            DROP TABLE IF EXISTS ""HouseholdUsers"";
+            CREATE TABLE IF NOT EXISTS ""HouseholdUsers"" (
                 HouseholdId VARCHAR(100) NOT NULL,
                 UserId VARCHAR(100) NOT NULL,
                 Role VARCHAR(100) NOT NULL,

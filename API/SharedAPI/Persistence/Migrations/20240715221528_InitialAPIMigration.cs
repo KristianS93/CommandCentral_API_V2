@@ -26,7 +26,7 @@ namespace API.SharedAPI.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "householdusers",
+                name: "HouseholdUsers",
                 columns: table => new
                 {
                     householdid = table.Column<string>(type: "text", nullable: false),
@@ -46,7 +46,7 @@ namespace API.SharedAPI.Persistence.Migrations
                 name: "households");
 
             migrationBuilder.DropTable(
-                name: "householdusers");
+                name: "HouseholdUsers");
         }
     }
 }

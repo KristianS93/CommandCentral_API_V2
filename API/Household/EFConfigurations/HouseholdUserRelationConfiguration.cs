@@ -10,6 +10,6 @@ public class HouseholdUserRelationConfiguration : IEntityTypeConfiguration<House
     public void Configure(EntityTypeBuilder<HouseholdUsersModel> builder)
     {
         builder.HasKey(key => new { key.HouseholdId, key.UserId });
-        builder.ToTable("householdusers");
+        builder.ToTable("HouseholdUsers");
     }
 }
