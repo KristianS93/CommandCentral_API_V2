@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.Identity;
 using API.identity.Models;
 using Microsoft.AspNetCore.Identity;
@@ -30,9 +31,21 @@ public static class RegisterIdentityApp
             }
         }
 
-        app.UseAuthentication();
+        // app.UseAuthentication();
+        
         app.UseAuthorization();
-
+        app.MapCustomIdentity().WithTags("Authentication");
+        app.AddIdentityEndpoints();
+        // app.MapIdentityApi<CCAIdentity>();
+        app.MapGet("/", (ClaimsPrincipal user) =>
+        {
+            var claims = user.Claims;
+            foreach (var claim in user.Claims)
+            {
+                Console.WriteLine(claim.Subject + " " + claim.Value);
+            }
+            return $"Hello {user.Identity!.Name}";
+        }).RequireAuthorization();
         return app;
     }
 }

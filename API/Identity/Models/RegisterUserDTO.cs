@@ -1,3 +1,3 @@
 namespace API.identity.Models;
 
-public record RegisterUserDTO(string email, string username, string firstname, string lastname, string password, string verifyPassword);
+public record RegisterUserDto(string Email, string FirstName, string LastName, string Password, string VerifyPassword);

@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,31 +9,7 @@ public static class IdentityEndpoints
 {
     public static WebApplication AddIdentityEndpoints(this WebApplication app)
     {
-        var user = app.MapGroup("/user").WithOpenApi();
-
-        user.MapPost("/register", async ([FromBody]RegisterUserDTO user, AuthService authService) =>
-        {
-            var result = await authService.Register(user);
-
-            if (result.IsFailed)
-            {
-                return Results.BadRequest(result.Errors);
-            }
-
-            return Results.Created();
-        }).WithName("RegisterUser").AllowAnonymous();
-
-        user.MapPost("/login", async ([FromBody]LoginUserDTO user, AuthService authService) =>
-        {
-            var result = await authService.Login(user);
-            if (result.IsFailed)
-            {
-                return Results.BadRequest(result.Errors);
-            }
-
-            return Results.Ok(new {token = result.Value});
-
-        }).WithName("LoginUser").AllowAnonymous();
+        var user = app.MapGroup("/user").WithOpenApi().WithTags("User");
 
         user.MapGet("/", async (UserService userService) =>
         {
@@ -47,6 +24,17 @@ public static class IdentityEndpoints
 
         }).RequireAuthorization(Roles.Admin);
 
+        user.MapGet("/info", async (ClaimsPrincipal user, UserService userService) =>
+        {
+            var result = await userService.GetInfo(user.Identity!.Name!);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok(result.Value);
+        }).RequireAuthorization(Roles.Member);
+        
         user.MapGet("/{id}", async (string id, UserService userService) =>
         {
             var result = await userService.GetUser(id);
@@ -57,7 +45,7 @@ public static class IdentityEndpoints
             return Results.Ok(result.Value);
         }).WithName("GetUser").RequireAuthorization(Roles.Admin);
 
-        user.MapPut("/{id}", async (UserDTO user, UserService userService) =>
+        user.MapPut("/{id}", async (UserDto user, UserService userService) =>
         {
             var result = await userService.EditUser(user);
             if (result.IsFailed)

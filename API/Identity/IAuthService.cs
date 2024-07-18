@@ -5,6 +5,6 @@ namespace API.identity;
 
 public interface IAuthService
 {
-    Task<Result> Register(RegisterUserDTO request);
-    Task<Result<string>> Login(LoginUserDTO request);
+    Task<Result> Register(RegisterUserDto request);
+    Task<Result<string>> Login(LoginUserDto request);
 }
