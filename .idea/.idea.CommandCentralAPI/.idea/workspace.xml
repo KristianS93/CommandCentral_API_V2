@@ -9,25 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Identity/Models/Refreshdto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/Identity/UserDomainValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/IAuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/IdentityEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/IdentityEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Migrations/20240715211643_InitialIdentityMigration.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Migrations/20240715211643_InitialIdentityMigration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Migrations/AuthDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Models/CCAIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/CCAIdentity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Models/LoginUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/LoginUserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Models/RegisterUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/RegisterUserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/Models/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/UserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/RegisterIdentityApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/RegisterIdentityApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/RegisterIdentityServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/RegisterIdentityServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Household/HouseholdEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/HouseholdEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Household/HouseholdService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/HouseholdService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Household/Models/CreateHouseholdDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/CreateHouseholdDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/RawTablesRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/RawTablesRegister.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,31 +69,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.API: http.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/7&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kristian/Documents/GitRepos/TestAuth/TestAuth&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.API: http.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/4",
+    "last_opened_file_path": "/home/kristian/Documents/GitRepos/TestAuth/TestAuth",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;,
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite",
+      "postgresql"
     ],
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
-      &quot;/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
-      &quot;/home/kristian/.local/share/Symbols/src&quot;
+    "rider.external.source.directories": [
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/home/kristian/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.API: http">
     <configuration name="API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/API/API.csproj" />

@@ -49,23 +49,74 @@ namespace API.SharedAPI.Persistence.Migrations
 
             modelBuilder.Entity("API.Household.Models.HouseholdUsersModel", b =>
                 {
-                    b.Property<string>("HouseholdId")
-                        .HasColumnType("text")
-                        .HasColumnName("householdid");
-
                     b.Property<string>("UserId")
                         .HasColumnType("text")
                         .HasColumnName("userid");
+
+                    b.Property<string>("HouseholdId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("householdid");
 
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("role");
 
-                    b.HasKey("HouseholdId", "UserId")
+                    b.HasKey("UserId")
                         .HasName("pk_householdusers");
 
                     b.ToTable("HouseholdUsers", (string)null);
+                });
+
+            modelBuilder.Entity("API.Household.Models.InvitationModel", b =>
+                {
+                    b.Property<string>("InvitationId")
+                        .HasColumnType("text")
+                        .HasColumnName("invitationid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdat");
+
+                    b.Property<string>("HouseholdId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("householdid");
+
+                    b.Property<string>("InviteeUserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("inviteeuserid");
+
+                    b.Property<string>("InviterUserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("inviteruserid");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("lastmodified");
+
+                    b.HasKey("InvitationId")
+                        .HasName("pk_invitations");
+
+                    b.HasIndex("HouseholdId")
+                        .HasDatabaseName("ix_invitations_householdid");
+
+                    b.ToTable("invitations", (string)null);
+                });
+
+            modelBuilder.Entity("API.Household.Models.InvitationModel", b =>
+                {
+                    b.HasOne("API.Household.Models.HouseholdModel", "Household")
+                        .WithMany()
+                        .HasForeignKey("HouseholdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invitations_households_householdid");
+
+                    b.Navigation("Household");
                 });
 #pragma warning restore 612, 618
         }

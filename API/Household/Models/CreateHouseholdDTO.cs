@@ -1,3 +1,3 @@
 namespace API.Household.Models;
 
-public record CreateHouseholdDTO(string name, string userId);
+public record CreateHouseholdDto(string Name);

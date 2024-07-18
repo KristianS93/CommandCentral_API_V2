@@ -10,7 +10,7 @@ public static class ConfigureAppSettings
             case "Docker":
                 builder.Configuration.AddJsonFile("appsettings.Docker.json", optional: false, reloadOnChange: true);
                 // Do somthing with the key for the token
-                var key = Environment.GetEnvironmentVariable("JetSettings:Key");
+                // var key = Environment.GetEnvironmentVariable("JetSettings:Key");
                 break;
             default:
                 builder.Configuration.AddJsonFile("appsettings.Development.json", optional: false,
@@ -18,7 +18,7 @@ public static class ConfigureAppSettings
                 builder.Configuration.AddUserSecrets<Program>();
                 break;
         }
-        builder.Configuration.AddJsonFile("appsettings.JwtSettings.json", optional: false, reloadOnChange: true);
+        // builder.Configuration.AddJsonFile("appsettings.JwtSettings.json", optional: false, reloadOnChange: true);
 
         return builder;
     }

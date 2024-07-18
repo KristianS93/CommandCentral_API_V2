@@ -51,6 +51,7 @@ public static class CustomIdentity
             await userManager.SetEmailAsync(user, email);
             var result = await userManager.CreateAsync(user, registration.Password);
             await userManager.AddToRoleAsync(user, Roles.Member);
+            await userManager.AddClaimAsync(user, new Claim(Claims.Household, Claims.HouseholdDefault));
             
             if (!result.Succeeded)
             {

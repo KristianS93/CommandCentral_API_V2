@@ -22,7 +22,7 @@ public static class RawTablesRegister
                 HouseholdId VARCHAR(100) NOT NULL,
                 UserId VARCHAR(100) NOT NULL,
                 Role VARCHAR(100) NOT NULL,
-                PRIMARY KEY (HouseholdId, UserId),
+                PRIMARY KEY (UserId),
                 FOREIGN KEY (HouseholdId) REFERENCES ""households""(""householdid"") ON DELETE CASCADE,
                 FOREIGN KEY (UserId) REFERENCES ""AspNetUsers""(""id"") ON DELETE CASCADE                            
             );

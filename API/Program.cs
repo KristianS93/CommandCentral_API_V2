@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using API;
 using API.Household;
 using API.identity;
+using API.Identity;
 using API.SharedAPI;
 using API.SharedAPI.Persistence;
 
@@ -57,6 +59,17 @@ await app.AddRawTables();
 
 // app.AddIdentityEndpoints();
 app.AddHouseholdEndpoints();
+
+app.MapGet("/xd", (ClaimsPrincipal principle) =>
+{
+    // foreach (var claim in principle.Claims)
+    // {
+    //     Console.WriteLine(claim.ToString() + " " + claim.Value);
+    // }
+    var userId = principle.FindFirst(Claims.Household)!.Value;
+    Console.WriteLine(userId);
+    return Results.Ok($"Hello {principle.Identity!.Name}");
+}).RequireAuthorization();
 
 app.Run();
 
