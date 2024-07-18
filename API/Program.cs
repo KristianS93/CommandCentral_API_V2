@@ -55,7 +55,7 @@ await app.AddIdentityApp();
 await app.AddSharedApp();
 await app.AddRawTables();
 
-app.AddIdentityEndpoints();
+// app.AddIdentityEndpoints();
 app.AddHouseholdEndpoints();
 
 app.Run();

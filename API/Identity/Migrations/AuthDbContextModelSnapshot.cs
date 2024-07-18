@@ -46,12 +46,12 @@ namespace API.Identity.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("emailconfirmed");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("firstname");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("lastname");

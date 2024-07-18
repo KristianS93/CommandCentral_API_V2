@@ -13,7 +13,11 @@ public static class RawTablesRegister
         
         // household user relation
         var sql = @"
-            DROP TABLE IF EXISTS ""HouseholdUsers"";
+            DO $$
+            BEGIN
+            IF (SELECT COUNT(*) FROM ""HouseholdUsers"") = 0 THEN
+                DROP TABLE ""HouseholdUsers"";
+            END IF;
             CREATE TABLE IF NOT EXISTS ""HouseholdUsers"" (
                 HouseholdId VARCHAR(100) NOT NULL,
                 UserId VARCHAR(100) NOT NULL,
@@ -22,6 +26,8 @@ public static class RawTablesRegister
                 FOREIGN KEY (HouseholdId) REFERENCES ""households""(""householdid"") ON DELETE CASCADE,
                 FOREIGN KEY (UserId) REFERENCES ""AspNetUsers""(""id"") ON DELETE CASCADE                            
             );
+            END
+            $$;
         ";
         await dbContext.Database.ExecuteSqlRawAsync(sql);
         return app;

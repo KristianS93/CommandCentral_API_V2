@@ -1,3 +1,3 @@
 namespace API.identity.Models;
 
-public record LoginUserDTO(string username, string password);
+public record LoginUserDto(string Email, string Password);

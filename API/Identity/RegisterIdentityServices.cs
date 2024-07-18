@@ -48,47 +48,68 @@ public static class RegisterIdentityServices
         });
         
 
-        services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-
+        // Old
+        // services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+        // services.AddAuthentication().AddJwtBearer(IdentityConstants.BearerScheme);
+        // Old
+        services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
         
-        services.AddIdentity<CCAIdentity, IdentityRole>()
-            .AddEntityFrameworkStores<AuthDbContext>();
+        services.AddAuthorizationBuilder()
+            .AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin))
+            .AddPolicy(Roles.Owner, policy => policy.RequireRole(Roles.Admin, Roles.Owner))
+            .AddPolicy(Roles.Member, policy => policy.RequireRole(Roles.Admin, Roles.Owner, Roles.Member));
 
-        services.Configure<IdentityOptions>(options =>
-        {
-            options.Password.RequiredLength = 6;
-            options.Password.RequireDigit = true;
-            options.Password.RequireLowercase = true;
-            options.Password.RequireUppercase = true;
-            options.Password.RequireNonAlphanumeric = true;
+        services.AddIdentityCore<CCAIdentity>(opt =>
+            {
+                opt.Password.RequiredLength = 6;
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireUppercase = true;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireNonAlphanumeric = true;
+            })
+            .AddRoles<IdentityRole>()
+            .AddUserValidator<UserDomainValidator<CCAIdentity>>()
+            .AddEntityFrameworkStores<AuthDbContext>()
+            .AddApiEndpoints();
+        
+        // services.AddIdentity<CCAIdentity, IdentityRole>()
+        //     .AddEntityFrameworkStores<AuthDbContext>();
 
-            options.User.RequireUniqueEmail = true;
-            options.User.AllowedUserNameCharacters =
-                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
-        });
+        // services.Configure<IdentityOptions>(options =>
+        // {
+        //     options.Password.RequiredLength = 6;
+        //     options.Password.RequireDigit = true;
+        //     options.Password.RequireLowercase = true;
+        //     options.Password.RequireUppercase = true;
+        //     options.Password.RequireNonAlphanumeric = true;
+        //
+        //     options.User.RequireUniqueEmail = true;
+        //     options.User.AllowedUserNameCharacters =
+        //         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
+        // });
         
         // Identity services
 
-        services.AddAuthentication(options =>
-        {
-            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-            options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero,
-                    ValidIssuer = configuration["JwtSettings:Issuer"],
-                    ValidAudience = configuration["JwtSettings:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]!))
-                };
-            });
+        // services.AddAuthentication(options =>
+        // {
+        //     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        //     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        //     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        // }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+        //     options =>
+        //     {
+        //         options.TokenValidationParameters = new TokenValidationParameters
+        //         {
+        //             ValidateIssuerSigningKey = true,
+        //             ValidateIssuer = true,
+        //             ValidateAudience = true,
+        //             ValidateLifetime = true,
+        //             ClockSkew = TimeSpan.Zero,
+        //             ValidIssuer = configuration["JwtSettings:Issuer"],
+        //             ValidAudience = configuration["JwtSettings:Audience"],
+        //             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]!))
+        //         };
+        //     });
         
         
         
@@ -96,12 +117,12 @@ public static class RegisterIdentityServices
 
         // services.AddAuthorizationBuilder().AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
         
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
-            options.AddPolicy(Roles.Owner, policy => policy.RequireRole(Roles.Admin, Roles.Owner));
-            options.AddPolicy(Roles.Member, policy => policy.RequireRole(Roles.Admin, Roles.Owner, Roles.Member));
-        });
+        // services.AddAuthorization(options =>
+        // {
+        //     options.AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin));
+        //     options.AddPolicy(Roles.Owner, policy => policy.RequireRole(Roles.Admin, Roles.Owner));
+        //     options.AddPolicy(Roles.Member, policy => policy.RequireRole(Roles.Admin, Roles.Owner, Roles.Member));
+        // });
         // DI
         
         // Token configuration
@@ -110,8 +131,7 @@ public static class RegisterIdentityServices
 
 
         services.AddDataProtection();
-
-        services.AddTransient<AuthService>();
+        
         services.AddTransient<UserService>();
         
         return services;

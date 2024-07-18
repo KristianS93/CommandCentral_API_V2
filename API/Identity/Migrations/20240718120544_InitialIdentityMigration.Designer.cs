@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Identity.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20240715211643_InitialIdentityMigration")]
+    [Migration("20240718120544_InitialIdentityMigration")]
     partial class InitialIdentityMigration
     {
         /// <inheritdoc />
@@ -49,12 +49,12 @@ namespace API.Identity.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("emailconfirmed");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("firstname");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("lastname");

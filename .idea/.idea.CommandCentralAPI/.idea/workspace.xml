@@ -8,13 +8,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="Add relation from Household to users, however only one dbcontext.">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/encodings.xml" beforeDir="false" />
+    <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Identity/Models/Refreshdto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Identity/UserDomainValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentral_API_V2/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/AuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/IAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/IAuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/IdentityEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/IdentityEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Migrations/20240715211643_InitialIdentityMigration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Migrations/20240715211643_InitialIdentityMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Migrations/AuthDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Models/CCAIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/CCAIdentity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Models/LoginUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/LoginUserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Models/RegisterUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/RegisterUserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/Models/UserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/Models/UserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/RegisterIdentityApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/RegisterIdentityApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/RegisterIdentityServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/RegisterIdentityServices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/RawTablesRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/RawTablesRegister.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="feature/4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,7 +61,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/KristianS93/CommandCentral_API_V2.git&quot;,
-    &quot;accountId&quot;: &quot;7bc923a7-ac7c-4256-a91c-7dd446fca2f3&quot;
+    &quot;accountId&quot;: &quot;8241ce68-43cd-4a76-b092-be6d549d6a30&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -74,7 +87,8 @@
   "keyToString": {
     ".NET Launch Settings Profile.API: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/4",
+    "git-widget-placeholder": "feature/7",
+    "last_opened_file_path": "/home/kristian/Documents/GitRepos/TestAuth/TestAuth",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -83,6 +97,10 @@
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite",
+      "postgresql"
+    ],
     "rider.external.source.directories": [
       "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
       "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
@@ -132,6 +150,10 @@
       <updated>1720877765806</updated>
       <workItem from="1720877767469" duration="43362000" />
       <workItem from="1720995079440" duration="1069000" />
+      <workItem from="1721077414954" duration="5118000" />
+      <workItem from="1721136045623" duration="9214000" />
+      <workItem from="1721250490224" duration="2583000" />
+      <workItem from="1721304154492" duration="2694000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />
@@ -141,7 +163,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720982904898</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="After figuring out what the cause was it is now possible to continue with EF, while having the bridge connection to the householdusers table.">
+      <option name="closed" value="true" />
+      <created>1721079678540</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721079678540</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Created a hacky way to ensure, consider if it should be like this.">
+      <option name="closed" value="true" />
+      <created>1721082241247</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721082241247</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +190,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add relation from Household to users, however only one dbcontext." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add relation from Household to users, however only one dbcontext." />
+    <MESSAGE value="After figuring out what the cause was it is now possible to continue with EF, while having the bridge connection to the householdusers table." />
+    <MESSAGE value="Created a hacky way to ensure, consider if it should be like this." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a hacky way to ensure, consider if it should be like this." />
   </component>
 </project>

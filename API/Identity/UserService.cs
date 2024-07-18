@@ -13,18 +13,29 @@ public class UserService
     {
         _userManager = userManager;
     }
-    public async Task<Result<List<UserDTO>>> Getusers()
+
+    public async Task<Result<UserDto>> GetInfo(string email)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user is null)
+        {
+            return Result.Fail("Error loading user");
+        }
+
+        return Result.Ok(new UserDto(user.Id, user.Email!, user.FirstName, user.LastName, "some role"));
+    }
+    public async Task<Result<List<UserDto>>> Getusers()
     {
         var users = await _userManager.Users.ToListAsync();
         if (users.IsNullOrEmpty())
         {
-            return Result.Ok(new List<UserDTO>());
+            return Result.Ok(new List<UserDto>());
         }
 
-        return Result.Ok(users.Select(u => new UserDTO(u.Id, u.UserName!, u.Email!, u.Firstname!, u.Lastname, "Comming")).ToList());
+        return Result.Ok(users.Select(u => new UserDto(u.Id, u.Email!, u.FirstName!, u.LastName, "Comming")).ToList());
     }
 
-    public async Task<Result<UserDTO>> GetUser(string id)
+    public async Task<Result<UserDto>> GetUser(string id)
     {
         
         var user = await _userManager.FindByIdAsync(id);
@@ -33,7 +44,7 @@ public class UserService
             return Result.Fail("No user with that id!");
         }
 
-        return Result.Ok(new UserDTO(user!.Id, user.UserName!, user.Email!, user.Firstname, user.Lastname, "Comming"));
+        return Result.Ok(new UserDto(user!.Id, user.Email!, user.FirstName, user.LastName, "Comming"));
     }
 
     public async Task<Result> DeleteUser(string id)
@@ -47,17 +58,16 @@ public class UserService
         return Result.Ok();
     }
 
-    public async Task<Result> EditUser(UserDTO user)
+    public async Task<Result> EditUser(UserDto user)
     {
-        var identity = await _userManager.FindByIdAsync(user.userId);
+        var identity = await _userManager.FindByIdAsync(user.UserId);
         if (identity is null)
         {
             return Result.Fail("User does not exist");
         }
-        identity.Firstname = user.firstname;
-        identity.Lastname = user.lastname;
-        identity.UserName = user.username;
-        identity.Email = user.email;
+        identity.FirstName = user.FirstName;
+        identity.LastName = user.LastName;
+        identity.Email = user.Email;
         var x = await _userManager.UpdateAsync(identity);
         if (!x.Succeeded)
         {
