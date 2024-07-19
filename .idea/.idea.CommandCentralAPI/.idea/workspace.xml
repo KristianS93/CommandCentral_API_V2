@@ -9,11 +9,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/EFConfigurations/GroceryItemConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/EFConfigurations/GroceryListConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListEndpoints.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListServiceRegistration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/Hubs/GroceryListHub.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/Hubs/SharedConnections.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/Models/GroceryItemModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/Models/GroceryListModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/GroceryList/Models/UserConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/3fb7d77a-183c-4f17-9fab-e720cf85b06f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/HouseholdEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/HouseholdEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/API/API.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Household/HouseholdService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/HouseholdService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/Models/CreateHouseholdDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/CreateHouseholdDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240718223616_InitialApiMigration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240718223616_InitialApiMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/ApiDbContextModelSnapshot.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +68,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07e96c28bffa4c5a91a050f708c9513cb108/d3/346c0e19/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66f640a747ba4421a79322cdff02ab8070600/14/21e129df/DataProtectionServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d217357e3fed4e88bf9833da3bf2177012000/1a/63aef5e0/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d217357e3fed4e88bf9833da3bf2177012000/36/3b8caef2/IdentityUser.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2bd3de7e13a04028b92db4628aba1faa81200/d8/3453d493/SignInManager`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b10bd2b1c644fb9bf7437d5d35a41b276400/37/5cb0842e/ClientProxyExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7131fcb823152524b974cf9714eeea465987b9aeec2f874695367eabeddb/Error.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -74,12 +89,13 @@
     ".NET Launch Settings Profile.API: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "feature/4",
-    "last_opened_file_path": "/home/kristian/Documents/GitRepos/TestAuth/TestAuth",
+    "last_opened_file_path": "/home/kristian/Documents/GitRepos/signalR/ChatApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CodeLensConfigurable",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -140,6 +156,7 @@
       <workItem from="1721136045623" duration="9214000" />
       <workItem from="1721250490224" duration="2583000" />
       <workItem from="1721304154492" duration="2694000" />
+      <workItem from="1721384813108" duration="6084000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />
@@ -165,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721082241247</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4.">
+      <option name="closed" value="true" />
+      <created>1721344829160</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721344829160</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +203,7 @@
     <MESSAGE value="Add relation from Household to users, however only one dbcontext." />
     <MESSAGE value="After figuring out what the cause was it is now possible to continue with EF, while having the bridge connection to the householdusers table." />
     <MESSAGE value="Created a hacky way to ensure, consider if it should be like this." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created a hacky way to ensure, consider if it should be like this." />
+    <MESSAGE value="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4." />
   </component>
 </project>

@@ -1,3 +1,4 @@
+using API.GroceryList.Models;
 using API.Household.Models;
 using API.SharedAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,10 @@ public class ApiDbContext : DbContext
     public DbSet<HouseholdUsersModel> HouseholdUsers { get; set; }
 
     public DbSet<InvitationModel> Invitations { get; set; }
+
+    public DbSet<GroceryListModel> GroceryLists { get; set; }
+
+    public DbSet<GroceryItemModel> GroceryListItems { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

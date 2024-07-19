@@ -1,8 +1,8 @@
-using System.Security.Claims;
+using API.GroceryList;
+using API.GroceryList.Models;
 using API.Household.Models;
 using API.Household.Models.Invitation;
 using API.identity;
-using API.Identity;
 using API.identity.Models;
 using API.SharedAPI.Persistence;
 using FluentResults;
@@ -16,11 +16,13 @@ public class HouseholdService
 {
     private readonly UserManager<CCAIdentity> _userManager;
     private readonly ApiDbContext _apiDbContext;
+    private readonly GroceryListService _groceryListService;
     
-    public HouseholdService(UserManager<CCAIdentity> userManager, ApiDbContext apiDbContext)
+    public HouseholdService(UserManager<CCAIdentity> userManager, ApiDbContext apiDbContext, GroceryListService groceryListService)
     {
         _userManager = userManager;
         _apiDbContext = apiDbContext;
+        _groceryListService = groceryListService;
     }
 
     public async Task<Result> CreateHousehold(CreateHouseholdDto householdDto, string userId)
@@ -60,6 +62,12 @@ public class HouseholdService
         // Consider not having claims.
         // await _userManager.RemoveClaimAsync(user!, new Claim(Claims.Household, Claims.HouseholdDefault));
         // await _userManager.AddClaimAsync(user!, new Claim(Claims.Household, houseHoldId));
+        
+        // Create groceryList
+        await _apiDbContext.GroceryLists.AddAsync(new GroceryListModel
+        {
+            HousehouldId = houseHoldId,
+        });
         await _apiDbContext.SaveChangesAsync();
         
         return Result.Ok();
@@ -153,12 +161,12 @@ public class HouseholdService
         {
             await _apiDbContext.HouseholdUsers.AddAsync(new HouseholdUsersModel
             {
-                HouseholdId = invitation!.HouseholdId,
+                HouseholdId = invitation.HouseholdId,
                 Role = Roles.Member,
                 UserId = userId,
             });
         }
-        _apiDbContext.Invitations.Remove(invitation!);
+        _apiDbContext.Invitations.Remove(invitation);
         await _apiDbContext.SaveChangesAsync();
         return Result.Ok();
     }
