@@ -1,8 +1,10 @@
+using System.Security.Claims;
 using API.GroceryList;
 using API.GroceryList.Models;
 using API.Household.Models;
 using API.Household.Models.Invitation;
 using API.identity;
+using API.Identity;
 using API.identity.Models;
 using API.SharedAPI.Persistence;
 using FluentResults;
@@ -60,8 +62,8 @@ public class HouseholdService
         }
         
         // Consider not having claims.
-        // await _userManager.RemoveClaimAsync(user!, new Claim(Claims.Household, Claims.HouseholdDefault));
-        // await _userManager.AddClaimAsync(user!, new Claim(Claims.Household, houseHoldId));
+        await _userManager.RemoveClaimAsync(user!, new Claim(Claims.Household, Claims.HouseholdDefault));
+        await _userManager.AddClaimAsync(user!, new Claim(Claims.Household, houseHoldId));
         
         // Create groceryList
         await _apiDbContext.GroceryLists.AddAsync(new GroceryListModel
@@ -151,6 +153,7 @@ public class HouseholdService
 
     public async Task<Result> AnswerInvitation(InvitationAnswerDto answer, string userId)
     {
+        //Todo: need to handle the update on the userclaims like in the create household.
         var invitation = await _apiDbContext.Invitations.FindAsync(answer.InvitationId);
         if (invitation is null)
         {
