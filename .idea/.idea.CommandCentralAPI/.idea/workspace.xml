@@ -9,28 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/EFConfigurations/GroceryItemConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/EFConfigurations/GroceryListConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListEndpoints.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListServiceRegistration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/Hubs/GroceryListHub.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/Hubs/SharedConnections.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/Models/GroceryItemModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/Models/GroceryListModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API/GroceryList/Models/UserConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/3fb7d77a-183c-4f17-9fab-e720cf85b06f.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/API/API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/HouseholdService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/HouseholdService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240718223616_InitialApiMigration.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240718223616_InitialApiMigration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/ApiDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/GroceryList/GroceryListEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/GroceryList/Hubs/GroceryListHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/GroceryList/Hubs/GroceryListHub.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,12 +42,12 @@
     &quot;assignee&quot;: &quot;KristianS93&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/KristianS93/CommandCentral_API_V2.git&quot;,
-    &quot;accountId&quot;: &quot;8241ce68-43cd-4a76-b092-be6d549d6a30&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KristianS93/CommandCentral_API_V2.git",
+    "accountId": "7bc923a7-ac7c-4256-a91c-7dd446fca2f3"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2bd3de7e13a04028b92db4628aba1faa81200/d8/3453d493/SignInManager`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b10bd2b1c644fb9bf7437d5d35a41b276400/37/5cb0842e/ClientProxyExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -104,9 +85,9 @@
       "postgresql"
     ],
     "rider.external.source.directories": [
-      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/home/kristian/.local/share/Symbols/src"
+      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/Users/kristian/Library/Application Support/Symbols/src"
     ]
   }
 }]]></component>
@@ -157,6 +138,7 @@
       <workItem from="1721250490224" duration="2583000" />
       <workItem from="1721304154492" duration="2694000" />
       <workItem from="1721384813108" duration="6084000" />
+      <workItem from="1721418737523" duration="1083000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />

@@ -23,8 +23,18 @@ public class GroceryListHub : Hub<IGroceryListHub>
     }
     public override async Task OnConnectedAsync()
     {
-        await Clients.All.RecieveMSG($"{Context.ConnectionId} connected!");
+        // Context.User.FindFirst(Cla)
+        // _connections.Connections[Context.ConnectionId] = new UserConnection()
+        await Clients.All.RecieveMSG($"{Context.ConnectionId} {Context.User!.FindFirst(ClaimTypes.NameIdentifier)!.Value} connected!");
     }
+
+    public override Task OnDisconnectedAsync(Exception? exception)
+    {
+        var connection = _connections.Connections[Context.ConnectionId];
+        _connections.Connections.Remove(Context.ConnectionId, out connection);
+        return base.OnDisconnectedAsync(exception);
+    }
+
     public async Task ConnectGroceryList(string eventItem, string msg)
     {
         Console.WriteLine("try to connect to hub");

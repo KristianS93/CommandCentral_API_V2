@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using API.GroceryList.Hubs;
 using API.identity;
+using API.Identity;
 using Microsoft.AspNetCore.SignalR;
 
 namespace API.GroceryList;
@@ -14,6 +15,10 @@ public static class GroceryListEndpoints
         groceryList.MapPost("/connect", async (ClaimsPrincipal principal, IHubContext<GroceryListHub, IGroceryListHub> context) =>
         {
             // Connect to group
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var userId = principal.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            
+            
             await Task.Delay(1);
         });
 
