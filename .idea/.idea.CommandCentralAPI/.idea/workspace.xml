@@ -9,9 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/GroceryList/GroceryListEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/GroceryList/GroceryListEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/GroceryList/Hubs/GroceryListHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/GroceryList/Hubs/GroceryListHub.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/appsettings.Docker.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/appsettings.Docker.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +50,13 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/KristianS93/CommandCentral_API_V2.git",
-    "accountId": "7bc923a7-ac7c-4256-a91c-7dd446fca2f3"
+    "accountId": "8241ce68-43cd-4a76-b092-be6d549d6a30"
   }
 }]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2bd3de7e13a04028b92db4628aba1faa81200/d8/3453d493/SignInManager`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b10bd2b1c644fb9bf7437d5d35a41b276400/37/5cb0842e/ClientProxyExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6d2f067212f04cc4aa8687987e18c12d12000/cb/9b94c05d/CorsMiddlewareExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7131fcb823152524b974cf9714eeea465987b9aeec2f874695367eabeddb/Error.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -85,9 +91,9 @@
       "postgresql"
     ],
     "rider.external.source.directories": [
-      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/Users/kristian/Library/Application Support/Symbols/src"
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/home/kristian/.local/share/Symbols/src"
     ]
   }
 }]]></component>
@@ -139,6 +145,7 @@
       <workItem from="1721304154492" duration="2694000" />
       <workItem from="1721384813108" duration="6084000" />
       <workItem from="1721418737523" duration="1083000" />
+      <workItem from="1721480066163" duration="8164000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />
@@ -172,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721344829160</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Working GroceryList signalR. The repo requires some cleaning of endpoints not being used, and fixing of &quot;eventItem&quot; which is not really needed. Before it can be pused to #4">
+      <option name="closed" value="true" />
+      <created>1721425914173</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721425914173</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +201,8 @@
     <MESSAGE value="After figuring out what the cause was it is now possible to continue with EF, while having the bridge connection to the householdusers table." />
     <MESSAGE value="Created a hacky way to ensure, consider if it should be like this." />
     <MESSAGE value="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4." />
+    <MESSAGE value="Add signalr functionality for grocerylist still needs work. In issue #4" />
+    <MESSAGE value="Working GroceryList signalR. The repo requires some cleaning of endpoints not being used, and fixing of &quot;eventItem&quot; which is not really needed. Before it can be pused to #4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working GroceryList signalR. The repo requires some cleaning of endpoints not being used, and fixing of &quot;eventItem&quot; which is not really needed. Before it can be pused to #4" />
   </component>
 </project>

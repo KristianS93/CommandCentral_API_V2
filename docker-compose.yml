@@ -3,14 +3,12 @@ services:
     container_name: CommandCentralAPI
     build: .
     ports:
-      - 5100:5067
-      - 5200:7199
+      - 5000:8080
     depends_on:
       db:
         condition: service_healthy
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_HTTP_PORTS: 5067;7199
+      ASPNETCORE_ENVIRONMENT: Docker
 
   db:
     container_name: CommandCentralDB

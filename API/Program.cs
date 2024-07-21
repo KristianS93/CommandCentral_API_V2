@@ -50,7 +50,9 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseCors("docker");
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseCors("development");
 }
 
 app.UseHttpsRedirection();
