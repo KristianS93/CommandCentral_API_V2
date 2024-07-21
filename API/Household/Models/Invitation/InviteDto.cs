@@ -1,3 +1,3 @@
 namespace API.Household.Models.Invitation;
 
-public record InviteDto(string Inviter, string Household);
+public record InviteDto(string InvitationId, string Inviter, string Household);

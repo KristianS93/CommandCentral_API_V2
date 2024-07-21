@@ -153,14 +153,14 @@ public class HouseholdService
 
     public async Task<Result> AnswerInvitation(InvitationAnswerDto answer, string userId)
     {
-        //Todo: need to handle the update on the userclaims like in the create household.
         var invitation = await _apiDbContext.Invitations.FindAsync(answer.InvitationId);
+        var user = await _userManager.FindByIdAsync(userId);
         if (invitation is null)
         {
             return Result.Fail(new Error("Invitation does not exist.").WithMetadata("Invitation", answer.InvitationId)
                 .CausedBy("Invitation missing."));
         }
-        if (answer.Answer)
+        if (answer.Answer && user is not null)
         {
             await _apiDbContext.HouseholdUsers.AddAsync(new HouseholdUsersModel
             {
@@ -168,8 +168,18 @@ public class HouseholdService
                 Role = Roles.Member,
                 UserId = userId,
             });
+            // remove all invitations related to this user
+            var allInvitations = await _apiDbContext.Invitations.Where(k => k.InviteeUserId == userId).ToListAsync();
+            _apiDbContext.Invitations.RemoveRange(allInvitations);
+            // Consider not having claims.
+            await _userManager.RemoveClaimAsync(user, new Claim(Claims.Household, Claims.HouseholdDefault));
+            await _userManager.AddClaimAsync(user, new Claim(Claims.Household, invitation.HouseholdId));
         }
-        _apiDbContext.Invitations.Remove(invitation);
+        else
+        {
+            // only remove the single invitation
+            _apiDbContext.Invitations.Remove(invitation);
+        }
         await _apiDbContext.SaveChangesAsync();
         return Result.Ok();
     }
@@ -188,7 +198,7 @@ public class HouseholdService
         {
             var inviterDetails = await _userManager.FindByIdAsync(invite.InviterUserId);
             var householdDetails = await _apiDbContext.Households.FindAsync(invite.HouseholdId);
-            invites.Add(new InviteDto(inviterDetails!.Email!, householdDetails!.Name));
+            invites.Add(new InviteDto(invite.InvitationId,inviterDetails!.Email!, householdDetails!.Name));
         }
 
         return invites;
