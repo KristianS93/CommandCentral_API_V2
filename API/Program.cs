@@ -1,5 +1,10 @@
+using System.Security.Claims;
 using API;
+using API.GroceryList;
+using API.Household;
 using API.identity;
+using API.SharedAPI;
+using API.SharedAPI.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +15,10 @@ builder.Logging.AddDebug();
 
 // Add services to the container.
 
+builder.Services.AddSharedServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddHouseholdServices();
+builder.Services.AddGroceryListServices();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -47,16 +55,11 @@ else
 app.UseHttpsRedirection();
 
 await app.AddIdentityApp();
+await app.AddSharedApp();
+await app.AddRawTables();
 
-app.AddIdentityEndpoints();
-
-app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-    {
-        var forecast = "hello world";
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
+app.AddHouseholdEndpoints();
+app.AddGroceryListEndpoints();
 
 app.Run();
 
