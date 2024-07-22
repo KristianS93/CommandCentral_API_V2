@@ -22,43 +22,47 @@ public static class CustomIdentity
         var timeProvider = endpoints.ServiceProvider.GetRequiredService<TimeProvider>();
         
         // Register
-        routeGroup.MapPost("/register", async Task<Results<Created, ValidationProblem>>(UserManager<CCAIdentity> userManager, [FromBody]RegisterUserDto registration) =>
+        var enableRegister = Environment.GetEnvironmentVariable("ENABLE_REGISTER");
+        if (enableRegister is not null && enableRegister == "true")
         {
+            routeGroup.MapPost("/register", async Task<Results<Created, ValidationProblem>>(UserManager<CCAIdentity> userManager, [FromBody]RegisterUserDto registration) =>
+            {
 
-            if (registration.Password != registration.VerifyPassword)
-            {
-                return CreateValidationProblem(IdentityResult.Failed(userManager.ErrorDescriber.PasswordMismatch()));
-            }
-            
-            if (!userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException($"{nameof(MapCustomIdentity)} requires a user store with email support.");
-            }
-            
-            var email = registration.Email;
-            if (string.IsNullOrEmpty(email) || !_emailAddressAttribute.IsValid(email))
-            {
-                return CreateValidationProblem(IdentityResult.Failed(userManager.ErrorDescriber.InvalidEmail(email)));
-            }
+                if (registration.Password != registration.VerifyPassword)
+                {
+                    return CreateValidationProblem(IdentityResult.Failed(userManager.ErrorDescriber.PasswordMismatch()));
+                }
+                
+                if (!userManager.SupportsUserEmail)
+                {
+                    throw new NotSupportedException($"{nameof(MapCustomIdentity)} requires a user store with email support.");
+                }
+                
+                var email = registration.Email;
+                if (string.IsNullOrEmpty(email) || !_emailAddressAttribute.IsValid(email))
+                {
+                    return CreateValidationProblem(IdentityResult.Failed(userManager.ErrorDescriber.InvalidEmail(email)));
+                }
 
-            var user = new CCAIdentity()
-            {
-                FirstName = registration.FirstName,
-                LastName = registration.LastName,
-                EmailConfirmed = true,
-            };
-            await userManager.SetUserNameAsync(user, email);
-            await userManager.SetEmailAsync(user, email);
-            var result = await userManager.CreateAsync(user, registration.Password);
-            await userManager.AddToRoleAsync(user, Roles.Member);
-            await userManager.AddClaimAsync(user, new Claim(Claims.Household, Claims.HouseholdDefault));
-            
-            if (!result.Succeeded)
-            {
-                return CreateValidationProblem(result);
-            }
-            return TypedResults.Created();
-        });
+                var user = new CCAIdentity()
+                {
+                    FirstName = registration.FirstName,
+                    LastName = registration.LastName,
+                    EmailConfirmed = true,
+                };
+                await userManager.SetUserNameAsync(user, email);
+                await userManager.SetEmailAsync(user, email);
+                var result = await userManager.CreateAsync(user, registration.Password);
+                await userManager.AddToRoleAsync(user, Roles.Member);
+                await userManager.AddClaimAsync(user, new Claim(Claims.Household, Claims.HouseholdDefault));
+                
+                if (!result.Succeeded)
+                {
+                    return CreateValidationProblem(result);
+                }
+                return TypedResults.Created();
+            });
+        }
         
         routeGroup.MapPost("/login",
             async Task<Results<Ok<AccessTokenResponse>, EmptyHttpResult, ProblemHttpResult>> (

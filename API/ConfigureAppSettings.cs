@@ -13,6 +13,10 @@ public static class ConfigureAppSettings
                 // var key = Environment.GetEnvironmentVariable("JetSettings:Key");
                 Console.WriteLine("Docker loaded!!!");
                 break;
+            case "Prod":
+                builder.Configuration.AddJsonFile("appsettings.Prod.json", optional: false, reloadOnChange: true);
+                Console.WriteLine("Prod loaded!!!");
+                break;
             default:
                 builder.Configuration.AddJsonFile("appsettings.Development.json", optional: false,
                     reloadOnChange: true);

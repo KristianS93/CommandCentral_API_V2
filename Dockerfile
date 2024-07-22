@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # http
-EXPOSE 8080
+EXPOSE 5067
 # https
-EXPOSE 8081
+# EXPOSE 8081
 ENTRYPOINT [ "dotnet", "API.dll" ]

@@ -9,7 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/appsettings.Prod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/4" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,16 +47,17 @@
     &quot;assignee&quot;: &quot;KristianS93&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KristianS93/CommandCentral_API_V2.git",
-    "accountId": "8241ce68-43cd-4a76-b092-be6d549d6a30"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KristianS93/CommandCentral_API_V2.git&quot;,
+    &quot;accountId&quot;: &quot;8241ce68-43cd-4a76-b092-be6d549d6a30&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2bd3de7e13a04028b92db4628aba1faa81200/d8/3453d493/SignInManager`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b10bd2b1c644fb9bf7437d5d35a41b276400/37/5cb0842e/ClientProxyExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6d2f067212f04cc4aa8687987e18c12d12000/cb/9b94c05d/CorsMiddlewareExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f84bd88c6c4c4e1f9b4c8e5d88bc711fe000/61/ee3f9d91/HostEnvironmentEnvExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7131fcb823152524b974cf9714eeea465987b9aeec2f874695367eabeddb/Error.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -68,7 +76,7 @@
   "keyToString": {
     ".NET Launch Settings Profile.API: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/4",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/kristian/Documents/GitRepos/signalR/ChatApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
