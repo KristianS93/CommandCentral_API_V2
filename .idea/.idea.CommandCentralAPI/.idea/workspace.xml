@@ -9,10 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/identity/Models/RoleDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/IdentityEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/identity/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/identity/UserService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,20 +27,39 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/4" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KristianS93&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KristianS93/CommandCentral_API_V2.git",
+    "accountId": "8241ce68-43cd-4a76-b092-be6d549d6a30"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/07e96c28bffa4c5a91a050f708c9513cb108/d3/346c0e19/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/66f640a747ba4421a79322cdff02ab8070600/14/21e129df/DataProtectionServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d217357e3fed4e88bf9833da3bf2177012000/1a/63aef5e0/IdentityUser`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d217357e3fed4e88bf9833da3bf2177012000/36/3b8caef2/IdentityUser.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2bd3de7e13a04028b92db4628aba1faa81200/d8/3453d493/SignInManager`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b10bd2b1c644fb9bf7437d5d35a41b276400/37/5cb0842e/ClientProxyExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6d2f067212f04cc4aa8687987e18c12d12000/cb/9b94c05d/CorsMiddlewareExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7131fcb823152524b974cf9714eeea465987b9aeec2f874695367eabeddb/Error.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2jC4XYXgu7B5RBXsV4G4DaLcMhF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,19 +68,25 @@
   "keyToString": {
     ".NET Launch Settings Profile.API: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/4",
+    "last_opened_file_path": "/home/kristian/Documents/GitRepos/signalR/ChatApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CodeLensConfigurable",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite",
+      "postgresql"
+    ],
     "rider.external.source.directories": [
-      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/Users/kristian/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/Users/kristian/Library/Application Support/Symbols/src"
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/home/kristian/.local/share/Symbols/src"
     ]
   }
 }]]></component>
@@ -108,8 +130,57 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720877765806</updated>
-      <workItem from="1720877767469" duration="26510000" />
+      <workItem from="1720877767469" duration="43362000" />
+      <workItem from="1720995079440" duration="1069000" />
+      <workItem from="1721077414954" duration="5118000" />
+      <workItem from="1721136045623" duration="9214000" />
+      <workItem from="1721250490224" duration="2583000" />
+      <workItem from="1721304154492" duration="2694000" />
+      <workItem from="1721384813108" duration="6084000" />
+      <workItem from="1721418737523" duration="1083000" />
+      <workItem from="1721480066163" duration="16718000" />
     </task>
+    <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
+      <option name="closed" value="true" />
+      <created>1720982904898</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720982904898</updated>
+    </task>
+    <task id="LOCAL-00002" summary="After figuring out what the cause was it is now possible to continue with EF, while having the bridge connection to the householdusers table.">
+      <option name="closed" value="true" />
+      <created>1721079678540</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1721079678540</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Created a hacky way to ensure, consider if it should be like this.">
+      <option name="closed" value="true" />
+      <created>1721082241247</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1721082241247</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4.">
+      <option name="closed" value="true" />
+      <created>1721344829160</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721344829160</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Working GroceryList signalR. The repo requires some cleaning of endpoints not being used, and fixing of &quot;eventItem&quot; which is not really needed. Before it can be pused to #4">
+      <option name="closed" value="true" />
+      <created>1721425914173</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721425914173</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,5 +190,12 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Add relation from Household to users, however only one dbcontext." />
+    <MESSAGE value="After figuring out what the cause was it is now possible to continue with EF, while having the bridge connection to the householdusers table." />
+    <MESSAGE value="Created a hacky way to ensure, consider if it should be like this." />
+    <MESSAGE value="Add invitations and functionality to household. Still missing delete househould and delete member. Issue #4." />
+    <MESSAGE value="Add signalr functionality for grocerylist still needs work. In issue #4" />
+    <MESSAGE value="Working GroceryList signalR. The repo requires some cleaning of endpoints not being used, and fixing of &quot;eventItem&quot; which is not really needed. Before it can be pused to #4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working GroceryList signalR. The repo requires some cleaning of endpoints not being used, and fixing of &quot;eventItem&quot; which is not really needed. Before it can be pused to #4" />
   </component>
 </project>

@@ -23,3 +23,10 @@
   - Add items - HUB
   - Delete items - HUB
   - (maybe create a grocerylist, maybe auto create per week)
+
+
+
+# Migration commands
+- `dotnet ef migrations add InitialAPIMigration -o ./SharedAPI/Persistence/Migrations/ -c ApiDbContext`
+- `dotnet ef migrations add InitialMigration -o ./Identity/Migrations/ -c AuthDbContext`
+- `dotnet ef migrations add InitialMigration -o ./SharedAPI/Persistence/Migrations`
