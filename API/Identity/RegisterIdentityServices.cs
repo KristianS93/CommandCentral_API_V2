@@ -2,6 +2,7 @@ using System.Text;
 using API.Identity;
 using API.identity.Models;
 using API.SharedAPI.Persistence;
+using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +53,23 @@ public static class RegisterIdentityServices
         // services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
         // services.AddAuthentication().AddJwtBearer(IdentityConstants.BearerScheme);
         // Old
-        services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+        services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme, options =>
+        {
+            options.Events = new BearerTokenEvents
+            {
+                OnMessageReceived = context =>
+                {
+                    var accessToken = context.Request.Query["access_token"];
+                    var path = context.HttpContext.Request.Path;
+                    if (!accessToken.IsNullOrEmpty() && path.StartsWithSegments("/grocerylist/hub"))
+                    {
+                        context.Token = accessToken;
+                    }
+
+                    return Task.CompletedTask;
+                }
+            };
+        });
         
         services.AddAuthorizationBuilder()
             .AddPolicy(Roles.Admin, policy => policy.RequireRole(Roles.Admin))

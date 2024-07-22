@@ -11,36 +11,18 @@ public static class GroceryListEndpoints
     public static WebApplication AddGroceryListEndpoints(this WebApplication app)
     {
         var groceryList = app.MapGroup("/grocerylist").WithOpenApi().WithTags("GroceryList");
-        
-        groceryList.MapPost("/", async (ClaimsPrincipal principal, IHubContext<GroceryListHub, IGroceryListHub> context) =>
+
+        groceryList.MapGet("/", async (ClaimsPrincipal principal, GroceryListService groceryListService) =>
         {
-            // add item
-            // require a connection to group is active
-            await Task.Delay(1);
-        });
-        
-        groceryList.MapPut("/", async (ClaimsPrincipal principal, IHubContext<GroceryListHub, IGroceryListHub> context) =>
-        {
-            // add item
-            // require a connection to group is active
-            await Task.Delay(1);
-        });
-        
-        groceryList.MapDelete("/", async (ClaimsPrincipal principal, IHubContext<GroceryListHub, IGroceryListHub> context) =>
-        {
-            // add item
-            // require a connection to group is active
-            await Task.Delay(1);
-        });
-        
-        // groceryList.MapGet("/", async (ClaimsPrincipal principal, IHubContext<GroceryListHub, IGroceryListHub> context) =>
-        // {
-        //     // add item
-        //     // require a connection to group is active
-        //     await Task.Delay(1);
-        // });
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await groceryListService.GetItems(householdId);
+            Console.WriteLine("number of items: " + result.Count);
+            return Results.Ok(result);
+        }).RequireAuthorization(Roles.Member);
         
         groceryList.MapHub<GroceryListHub>("/hub").RequireAuthorization(Roles.Member);
+        
+        // example:
         return app;
     }
 }

@@ -22,26 +22,10 @@ public class GroceryListHub : Hub<IGroceryListHub>
         _groceryListService = groceryListService;
         _connections = connections;
     }
-    public override async Task OnConnectedAsync()
-    {
-        // working
-        var householdId = Context.User!.FindFirst(Claims.Household)!.Value;
-        var userId = Context.User!.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-        
-        _connections.Connections[Context.ConnectionId] =
-            new UserConnection(userId, householdId);
-        await Groups.AddToGroupAsync(Context.ConnectionId, householdId);
-        var items = await _groceryListService.GetItems(householdId);
-        Console.WriteLine("number of items: " + items.Count);
-        // var jsonItems = JsonSerializer.Serialize(items);
-        await GetItems("GetItems", items);
-        // Console.WriteLine(jsonItems);
-        Console.WriteLine($"Connected to group {householdId}, user: {userId}");
-    }
 
+    
     public override Task OnDisconnectedAsync(Exception? exception)
     {
-        // working
         Console.WriteLine("Connections before " + _connections.Connections.Count);
         var connection = _connections.Connections[Context.ConnectionId];
         _connections.Connections.Remove(Context.ConnectionId, out connection);
@@ -49,66 +33,101 @@ public class GroceryListHub : Hub<IGroceryListHub>
         return base.OnDisconnectedAsync(exception);
     }
 
-    public async Task GetItems(string eventItem, List<GroceryItemDto> items)
+    public async Task JoinGroceryList()
     {
-        foreach (var item in items)
-        {
-            Console.WriteLine(item.Name);
-        }
-        if (_connections.Connections.TryGetValue(Context.ConnectionId, out UserConnection? connection))
-        {
-            await Clients.Group(connection.HousehouldId).GetItems(eventItem, items);
-        }
+        var householdId = Context.User!.FindFirst(Claims.Household)!.Value;
+        var userId = Context.User!.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        _connections.Connections[Context.ConnectionId] =
+            new UserConnection(userId, householdId);
+        await Groups.AddToGroupAsync(Context.ConnectionId, householdId);
+        // var items = await _groceryListService.GetItems(householdId);
+        // Console.WriteLine("number of items: " + items.Count);
+        // var jsonItems = JsonSerializer.Serialize(items);
+        // Console.WriteLine(jsonItems);
+        // await GetItems(items);
+        Console.WriteLine($"Connected to group {householdId}, user: {userId}");
+        await Clients.Group(householdId).JoinGroceryList($"{userId} has joined");
     }
-    public async Task AddItem(string eventItem, CreateGroceryItemDto item)
+    
+    // public override async Task OnConnectedAsync()
+    // {
+    //     Console.WriteLine("CONNECTING");
+    //     // working
+    //     var householdId = Context.User!.FindFirst(Claims.Household)!.Value;
+    //     var userId = Context.User!.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+    //     
+    //     _connections.Connections[Context.ConnectionId] =
+    //         new UserConnection(userId, householdId);
+    //     await Groups.AddToGroupAsync(Context.ConnectionId, householdId);
+    //     var items = await _groceryListService.GetItems(householdId);
+    //     Console.WriteLine("number of items: " + items.Count);
+    //     // var jsonItems = JsonSerializer.Serialize(items);
+    //     await GetItems(items);
+    //     // Console.WriteLine(jsonItems);
+    //     Console.WriteLine($"Connected to group {householdId}, user: {userId}");
+    // }
+    
+    // public async Task GetItems(List<GroceryItemDto> items)
+    // {
+    //     foreach (var item in items)
+    //     {
+    //         Console.WriteLine(item.Name);
+    //     }
+    //     if (_connections.Connections.TryGetValue(Context.ConnectionId, out UserConnection? connection))
+    //     {
+    //         await Clients.Group(connection.HousehouldId).GetItems(items);
+    //     }
+    // }
+    public async Task AddItem(CreateGroceryItemDto item)
     {
         if (_connections.Connections.TryGetValue(Context.ConnectionId, out UserConnection? connection))
         {
             var result = await _groceryListService.AddItem(item, connection.HousehouldId);
             if (result.IsFailed)
             {
-                await Error("Error", result.Errors);
+                await Error(result.Errors);
             }
             else
             {
-                await Clients.Group(connection.HousehouldId).AddItem(eventItem, item);
+                item.ItemId = result.Value.ItemId;
+                await Clients.Group(connection.HousehouldId).AddItem(item);
             }
         }
     }
-    public async Task Error(string eventItem, List<IError> error)
+    public async Task Error(List<IError> error)
     {
         if (_connections.Connections.TryGetValue(Context.ConnectionId, out UserConnection? connection))
         {
-            await Clients.Group(connection.HousehouldId).Error(eventItem, error);
+            await Clients.Group(connection.HousehouldId).Error(error);
         }
     }
     
-    public async Task EditItem(string eventItem, GroceryItemDto item){
+    public async Task EditItem(GroceryItemDto item){
         if (_connections.Connections.TryGetValue(Context.ConnectionId, out UserConnection? connection))
         {
             var result = await _groceryListService.EditItem(item, connection.HousehouldId);
             if (result.IsFailed)
             {
-                await Error("Error", result.Errors);
+                await Error(result.Errors);
             }
             else
             {
-                await Clients.Group(connection.HousehouldId).EditItem(eventItem, item);
+                await Clients.Group(connection.HousehouldId).EditItem(item);
             }
         }
     }
-
-    public async Task DeleteItem(string eventItem, string itemId){
+    
+    public async Task DeleteItem(string itemId){
         if (_connections.Connections.TryGetValue(Context.ConnectionId, out UserConnection? connection))
         {
             var result = await _groceryListService.DeleteItem(itemId, connection.HousehouldId);
             if (result.IsFailed)
             {
-                await Error("Error", result.Errors);
+                await Error(result.Errors);
             }
             else
             {
-                await Clients.Group(connection.HousehouldId).DeleteItem(eventItem, itemId);
+                await Clients.Group(connection.HousehouldId).DeleteItem(itemId);
             }
         }
     }

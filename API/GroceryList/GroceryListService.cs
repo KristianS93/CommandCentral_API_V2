@@ -24,7 +24,7 @@ public class GroceryListService
         return returnItems;
     }
 
-    public async Task<Result> AddItem(CreateGroceryItemDto item, string househouldId)
+    public async Task<Result<GroceryItemModel>> AddItem(CreateGroceryItemDto item, string househouldId)
     {
         if (item.Name.IsNullOrEmpty())
         {
@@ -34,16 +34,17 @@ public class GroceryListService
 
         var list = await _apiDbContext.GroceryLists.Include(k => k.Items).
             FirstOrDefaultAsync(k => k.HousehouldId == househouldId);
-        
-        list!.Items!.Add(new GroceryItemModel
+
+        var newItem = new GroceryItemModel
         {
-            GroceryListId = list.GroceryListId,
+            GroceryListId = list!.GroceryListId,
             Name = item.Name,
             Amount = item.Amount,
             Picture = string.Empty,
-        });
+        };
+        list!.Items!.Add(newItem);
         await _apiDbContext.SaveChangesAsync();
-        return Result.Ok();
+        return Result.Ok(newItem);
     }
 
     public async Task<Result> EditItem(GroceryItemDto item, string househouldId)

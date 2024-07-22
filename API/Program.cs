@@ -3,7 +3,6 @@ using API;
 using API.GroceryList;
 using API.Household;
 using API.identity;
-using API.Identity;
 using API.SharedAPI;
 using API.SharedAPI.Persistence;
 
@@ -50,9 +49,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseCors("development");
+    app.UseCors("docker");
 }
 
 app.UseHttpsRedirection();
@@ -61,20 +58,8 @@ await app.AddIdentityApp();
 await app.AddSharedApp();
 await app.AddRawTables();
 
-// app.AddIdentityEndpoints();
 app.AddHouseholdEndpoints();
 app.AddGroceryListEndpoints();
-
-app.MapGet("/xd", (ClaimsPrincipal principle) =>
-{
-    // foreach (var claim in principle.Claims)
-    // {
-    //     Console.WriteLine(claim.ToString() + " " + claim.Value);
-    // }
-    var userId = principle.FindFirst(Claims.Household)!.Value;
-    Console.WriteLine(userId);
-    return Results.Ok($"Hello {principle.Identity!.Name}");
-}).RequireAuthorization();
 
 app.Run();
 

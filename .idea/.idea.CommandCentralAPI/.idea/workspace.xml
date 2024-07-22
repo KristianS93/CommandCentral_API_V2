@@ -10,8 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/HouseholdService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/HouseholdService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Household/Models/Invitation/InviteDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Household/Models/Invitation/InviteDto.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +138,7 @@
       <workItem from="1721304154492" duration="2694000" />
       <workItem from="1721384813108" duration="6084000" />
       <workItem from="1721418737523" duration="1083000" />
-      <workItem from="1721480066163" duration="14258000" />
+      <workItem from="1721480066163" duration="16718000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />

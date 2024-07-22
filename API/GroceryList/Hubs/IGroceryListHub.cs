@@ -5,13 +5,15 @@ namespace API.GroceryList.Hubs;
 
 public interface IGroceryListHub
 {
-    Task AddItem(string eventItem, CreateGroceryItemDto item);
+    // Task SendAsync(string eventItem, string msg);
+    Task JoinGroceryList(string connected);
+    Task AddItem(CreateGroceryItemDto item);
 
-    Task EditItem(string eventItem, GroceryItemDto item);
+    Task EditItem(GroceryItemDto item);
 
-    Task DeleteItem(string eventItem, string itemId);
+    Task DeleteItem(string itemId);
 
-    Task GetItems(string eventItem, List<GroceryItemDto> items);
+    Task GetItems(List<GroceryItemDto> items);
 
-    Task Error(string eventItem, List<IError> error);
+    Task Error(List<IError> error);
 }
