@@ -3,14 +3,14 @@ services:
     container_name: CommandCentralAPI
     build: .
     ports:
-      - 5000:5067
+      - 5100:5067
     depends_on:
       db:
         condition: service_healthy
     environment:
       ASPNETCORE_ENVIRONMENT: Docker
       ASPNETCORE_HTTP_PORTS: 5067
-      ENABLE_REGISTER: false
+      ENABLE_REGISTER: true
 
   db:
     container_name: CommandCentralDB

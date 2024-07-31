@@ -10,8 +10,9 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Prod
       ASPNETCORE_HTTP_PORTS: 5067
+      ENABLE_REGISTER: true
 
-  b:
+  db:
     container_name: CommandCentralDB
     image: postgres:16
     restart: on-failure
