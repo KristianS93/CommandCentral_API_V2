@@ -9,14 +9,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/appsettings.Prod.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/EFConfigurations/IngredientConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/EFConfigurations/MealConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/EFConfigurations/MealPlanConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/EFConfigurations/MealsInPlanConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/MealPlannerEndpoints.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/MealPlannerService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/MealPlannerServiceRegistration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/Models/IngredientModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/Models/MealModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/Models/MealPlanModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/Models/MealsInPlan.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/dataSources/78a8f1ed-5d07-48fb-91c3-c7ecd1735e58.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/shelf/xd/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/SharedAPI/Persistence/ApiDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240719105513_InitialApiMigration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/20240719105513_InitialApiMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/SharedAPI/Persistence/Migrations/ApiDbContextModelSnapshot.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -76,7 +87,7 @@
   "keyToString": {
     ".NET Launch Settings Profile.API: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/20",
     "last_opened_file_path": "/home/kristian/Documents/GitRepos/signalR/ChatApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -147,6 +158,7 @@
       <workItem from="1721384813108" duration="6084000" />
       <workItem from="1721418737523" duration="1083000" />
       <workItem from="1721480066163" duration="16718000" />
+      <workItem from="1722440971483" duration="7348000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />

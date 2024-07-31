@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace API.SharedAPI.Persistence.Migrations
+namespace API.SharedAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialApiMigration : Migration
+    public partial class InitialAPIMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,6 +36,22 @@ namespace API.SharedAPI.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_householdusers", x => x.userid);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "meals",
+                columns: table => new
+                {
+                    mealid = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    image = table.Column<string>(type: "text", nullable: true),
+                    createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_meals", x => x.mealid);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,6 +97,49 @@ namespace API.SharedAPI.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "mealplans",
+                columns: table => new
+                {
+                    mealplanid = table.Column<string>(type: "text", nullable: false),
+                    householdid = table.Column<string>(type: "text", nullable: false),
+                    weekno = table.Column<DateTime>(type: "date", nullable: false),
+                    createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_mealplans", x => x.mealplanid);
+                    table.ForeignKey(
+                        name: "fk_mealplans_households_householdid",
+                        column: x => x.householdid,
+                        principalTable: "households",
+                        principalColumn: "householdid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ingredients",
+                columns: table => new
+                {
+                    ingredientid = table.Column<string>(type: "text", nullable: false),
+                    mealid = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    amount = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_ingredients", x => x.ingredientid);
+                    table.ForeignKey(
+                        name: "fk_ingredients_meals_mealid",
+                        column: x => x.mealid,
+                        principalTable: "meals",
+                        principalColumn: "mealid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "grocerylistitems",
                 columns: table => new
                 {
@@ -109,6 +168,37 @@ namespace API.SharedAPI.Persistence.Migrations
                         principalColumn: "grocerylistid");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "mealsinplans",
+                columns: table => new
+                {
+                    mealsinplanid = table.Column<string>(type: "text", nullable: false),
+                    mealid = table.Column<string>(type: "text", nullable: false),
+                    mealplanid = table.Column<string>(type: "text", nullable: false),
+                    mealplanmodelmealplanid = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_mealsinplans", x => x.mealsinplanid);
+                    table.ForeignKey(
+                        name: "fk_mealsinplans_mealplans_mealplanid",
+                        column: x => x.mealplanid,
+                        principalTable: "mealplans",
+                        principalColumn: "mealplanid",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_mealsinplans_mealplans_mealplanmodelmealplanid",
+                        column: x => x.mealplanmodelmealplanid,
+                        principalTable: "mealplans",
+                        principalColumn: "mealplanid");
+                    table.ForeignKey(
+                        name: "fk_mealsinplans_meals_mealid",
+                        column: x => x.mealid,
+                        principalTable: "meals",
+                        principalColumn: "mealid",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "ix_grocerylistitems_grocerylistid",
                 table: "grocerylistitems",
@@ -125,9 +215,35 @@ namespace API.SharedAPI.Persistence.Migrations
                 column: "househouldid");
 
             migrationBuilder.CreateIndex(
+                name: "ix_ingredients_mealid",
+                table: "ingredients",
+                column: "mealid");
+
+            migrationBuilder.CreateIndex(
                 name: "ix_invitations_householdid",
                 table: "invitations",
                 column: "householdid");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_mealplans_householdid",
+                table: "mealplans",
+                column: "householdid",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_mealsinplans_mealid",
+                table: "mealsinplans",
+                column: "mealid");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_mealsinplans_mealplanid",
+                table: "mealsinplans",
+                column: "mealplanid");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_mealsinplans_mealplanmodelmealplanid",
+                table: "mealsinplans",
+                column: "mealplanmodelmealplanid");
         }
 
         /// <inheritdoc />
@@ -140,10 +256,22 @@ namespace API.SharedAPI.Persistence.Migrations
                 name: "HouseholdUsers");
 
             migrationBuilder.DropTable(
+                name: "ingredients");
+
+            migrationBuilder.DropTable(
                 name: "invitations");
 
             migrationBuilder.DropTable(
+                name: "mealsinplans");
+
+            migrationBuilder.DropTable(
                 name: "grocerylists");
+
+            migrationBuilder.DropTable(
+                name: "mealplans");
+
+            migrationBuilder.DropTable(
+                name: "meals");
 
             migrationBuilder.DropTable(
                 name: "households");

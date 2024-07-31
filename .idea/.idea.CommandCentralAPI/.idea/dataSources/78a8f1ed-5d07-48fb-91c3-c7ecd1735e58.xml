@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>751</IntrospectionStateNumber>
+      <IntrospectionStateNumber>739</IntrospectionStateNumber>
       <ServerVersion>16.3</ServerVersion>
-      <StartupTime>1721658929</StartupTime>
+      <StartupTime>1722447031</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1407,7 +1407,7 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>751</IntrospectionStateNumber>
+      <IntrospectionStateNumber>739</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>cca</OwnerName>
     </database>
@@ -4831,8 +4831,8 @@ true posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>751</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-07-22.14:37:56</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>739</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-07-31.17:30:35</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4896,7 +4896,7 @@ true posixrules
       <OwnerName>cca</OwnerName>
     </table>
     <table id="274" parent="264" name="HouseholdUsers">
-      <ObjectId>16537</ObjectId>
+      <ObjectId>16595</ObjectId>
       <StateNumber>738</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>cca</OwnerName>
@@ -4908,13 +4908,13 @@ true posixrules
       <OwnerName>cca</OwnerName>
     </table>
     <table id="276" parent="264" name="grocerylistitems">
-      <ObjectId>16516</ObjectId>
+      <ObjectId>16547</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>cca</OwnerName>
     </table>
     <table id="277" parent="264" name="grocerylists">
-      <ObjectId>16492</ObjectId>
+      <ObjectId>16499</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>cca</OwnerName>
@@ -4925,13 +4925,37 @@ true posixrules
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>cca</OwnerName>
     </table>
-    <table id="279" parent="264" name="invitations">
-      <ObjectId>16504</ObjectId>
+    <table id="279" parent="264" name="ingredients">
+      <ObjectId>16535</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>cca</OwnerName>
     </table>
-    <column id="280" parent="267" name="id">
+    <table id="280" parent="264" name="invitations">
+      <ObjectId>16511</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>cca</OwnerName>
+    </table>
+    <table id="281" parent="264" name="mealplans">
+      <ObjectId>16523</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>cca</OwnerName>
+    </table>
+    <table id="282" parent="264" name="meals">
+      <ObjectId>16492</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>cca</OwnerName>
+    </table>
+    <table id="283" parent="264" name="mealsinplans">
+      <ObjectId>16564</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>cca</OwnerName>
+    </table>
+    <column id="284" parent="267" name="id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
@@ -4940,26 +4964,26 @@ true posixrules
       <SequenceId>16404</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="281" parent="267" name="roleid">
+    <column id="285" parent="267" name="roleid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="282" parent="267" name="claimtype">
+    <column id="286" parent="267" name="claimtype">
       <DasType>text|0s</DasType>
       <Position>3</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="283" parent="267" name="claimvalue">
+    <column id="287" parent="267" name="claimvalue">
       <DasType>text|0s</DasType>
       <Position>4</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="284" parent="267" name="fk_aspnetroleclaims_aspnetroles_roleid">
+    <foreign-key id="288" parent="267" name="fk_aspnetroleclaims_aspnetroles_roleid">
       <ColNames>roleid</ColNames>
       <ObjectId>16412</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -4967,7 +4991,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16390</RefTableId>
     </foreign-key>
-    <index id="285" parent="267" name="pk_aspnetroleclaims">
+    <index id="289" parent="267" name="pk_aspnetroleclaims">
       <ColNames>id</ColNames>
       <ObjectId>16410</ObjectId>
       <Primary>1</Primary>
@@ -4975,7 +4999,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="286" parent="267" name="ix_aspnetroleclaims_roleid">
+    <index id="290" parent="267" name="ix_aspnetroleclaims_roleid">
       <ColNames>roleid</ColNames>
       <ObjectId>16471</ObjectId>
       <StateNumber>733</StateNumber>
@@ -4984,38 +5008,38 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="287" parent="267" name="pk_aspnetroleclaims">
+    <key id="291" parent="267" name="pk_aspnetroleclaims">
       <ObjectId>16411</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16410</UnderlyingIndexId>
     </key>
-    <column id="288" parent="268" name="id">
+    <column id="292" parent="268" name="id">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="289" parent="268" name="name">
+    <column id="293" parent="268" name="name">
       <DasType>varchar(256)|0s</DasType>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="290" parent="268" name="normalizedname">
+    <column id="294" parent="268" name="normalizedname">
       <DasType>varchar(256)|0s</DasType>
       <Position>3</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="291" parent="268" name="concurrencystamp">
+    <column id="295" parent="268" name="concurrencystamp">
       <DasType>text|0s</DasType>
       <Position>4</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <index id="292" parent="268" name="pk_aspnetroles">
+    <index id="296" parent="268" name="pk_aspnetroles">
       <ColNames>id</ColNames>
       <ObjectId>16395</ObjectId>
       <Primary>1</Primary>
@@ -5026,7 +5050,7 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="293" parent="268" name="RoleNameIndex">
+    <index id="297" parent="268" name="RoleNameIndex">
       <ColNames>normalizedname</ColNames>
       <ObjectId>16472</ObjectId>
       <StateNumber>733</StateNumber>
@@ -5036,13 +5060,13 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="294" parent="268" name="pk_aspnetroles">
+    <key id="298" parent="268" name="pk_aspnetroles">
       <ObjectId>16396</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16395</UnderlyingIndexId>
     </key>
-    <column id="295" parent="269" name="id">
+    <column id="299" parent="269" name="id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
@@ -5051,26 +5075,26 @@ true posixrules
       <SequenceId>16417</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="296" parent="269" name="userid">
+    <column id="300" parent="269" name="userid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="297" parent="269" name="claimtype">
+    <column id="301" parent="269" name="claimtype">
       <DasType>text|0s</DasType>
       <Position>3</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="298" parent="269" name="claimvalue">
+    <column id="302" parent="269" name="claimvalue">
       <DasType>text|0s</DasType>
       <Position>4</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="299" parent="269" name="fk_aspnetuserclaims_aspnetusers_userid">
+    <foreign-key id="303" parent="269" name="fk_aspnetuserclaims_aspnetusers_userid">
       <ColNames>userid</ColNames>
       <ObjectId>16425</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -5078,7 +5102,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16397</RefTableId>
     </foreign-key>
-    <index id="300" parent="269" name="pk_aspnetuserclaims">
+    <index id="304" parent="269" name="pk_aspnetuserclaims">
       <ColNames>id</ColNames>
       <ObjectId>16423</ObjectId>
       <Primary>1</Primary>
@@ -5086,7 +5110,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="301" parent="269" name="ix_aspnetuserclaims_userid">
+    <index id="305" parent="269" name="ix_aspnetuserclaims_userid">
       <ColNames>userid</ColNames>
       <ObjectId>16473</ObjectId>
       <StateNumber>733</StateNumber>
@@ -5095,40 +5119,40 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="302" parent="269" name="pk_aspnetuserclaims">
+    <key id="306" parent="269" name="pk_aspnetuserclaims">
       <ObjectId>16424</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16423</UnderlyingIndexId>
     </key>
-    <column id="303" parent="270" name="loginprovider">
+    <column id="307" parent="270" name="loginprovider">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="304" parent="270" name="providerkey">
+    <column id="308" parent="270" name="providerkey">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="305" parent="270" name="providerdisplayname">
+    <column id="309" parent="270" name="providerdisplayname">
       <DasType>text|0s</DasType>
       <Position>3</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="306" parent="270" name="userid">
+    <column id="310" parent="270" name="userid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="307" parent="270" name="fk_aspnetuserlogins_aspnetusers_userid">
+    <foreign-key id="311" parent="270" name="fk_aspnetuserlogins_aspnetusers_userid">
       <ColNames>userid</ColNames>
       <ObjectId>16437</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -5136,7 +5160,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16397</RefTableId>
     </foreign-key>
-    <index id="308" parent="270" name="pk_aspnetuserlogins">
+    <index id="312" parent="270" name="pk_aspnetuserlogins">
       <ColNames>loginprovider
 providerkey</ColNames>
       <ObjectId>16435</ObjectId>
@@ -5151,7 +5175,7 @@ default</CollationNames>
       <CollationParentNames>pg_catalog
 pg_catalog</CollationParentNames>
     </index>
-    <index id="309" parent="270" name="ix_aspnetuserlogins_userid">
+    <index id="313" parent="270" name="ix_aspnetuserlogins_userid">
       <ColNames>userid</ColNames>
       <ObjectId>16474</ObjectId>
       <StateNumber>733</StateNumber>
@@ -5160,27 +5184,27 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="310" parent="270" name="pk_aspnetuserlogins">
+    <key id="314" parent="270" name="pk_aspnetuserlogins">
       <ObjectId>16436</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16435</UnderlyingIndexId>
     </key>
-    <column id="311" parent="271" name="userid">
+    <column id="315" parent="271" name="userid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="312" parent="271" name="roleid">
+    <column id="316" parent="271" name="roleid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="313" parent="271" name="fk_aspnetuserroles_aspnetusers_userid">
+    <foreign-key id="317" parent="271" name="fk_aspnetuserroles_aspnetusers_userid">
       <ColNames>userid</ColNames>
       <ObjectId>16454</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -5188,7 +5212,7 @@ pg_catalog</CollationParentNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16397</RefTableId>
     </foreign-key>
-    <foreign-key id="314" parent="271" name="fk_aspnetuserroles_aspnetroles_roleid">
+    <foreign-key id="318" parent="271" name="fk_aspnetuserroles_aspnetroles_roleid">
       <ColNames>roleid</ColNames>
       <ObjectId>16449</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -5196,7 +5220,7 @@ pg_catalog</CollationParentNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16390</RefTableId>
     </foreign-key>
-    <index id="315" parent="271" name="pk_aspnetuserroles">
+    <index id="319" parent="271" name="pk_aspnetuserroles">
       <ColNames>userid
 roleid</ColNames>
       <ObjectId>16447</ObjectId>
@@ -5211,7 +5235,7 @@ default</CollationNames>
       <CollationParentNames>pg_catalog
 pg_catalog</CollationParentNames>
     </index>
-    <index id="316" parent="271" name="ix_aspnetuserroles_roleid">
+    <index id="320" parent="271" name="ix_aspnetuserroles_roleid">
       <ColNames>roleid</ColNames>
       <ObjectId>16475</ObjectId>
       <StateNumber>733</StateNumber>
@@ -5220,40 +5244,40 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="317" parent="271" name="pk_aspnetuserroles">
+    <key id="321" parent="271" name="pk_aspnetuserroles">
       <ObjectId>16448</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16447</UnderlyingIndexId>
     </key>
-    <column id="318" parent="272" name="userid">
+    <column id="322" parent="272" name="userid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="319" parent="272" name="loginprovider">
+    <column id="323" parent="272" name="loginprovider">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="320" parent="272" name="name">
+    <column id="324" parent="272" name="name">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="321" parent="272" name="value">
+    <column id="325" parent="272" name="value">
       <DasType>text|0s</DasType>
       <Position>4</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="322" parent="272" name="fk_aspnetusertokens_aspnetusers_userid">
+    <foreign-key id="326" parent="272" name="fk_aspnetusertokens_aspnetusers_userid">
       <ColNames>userid</ColNames>
       <ObjectId>16466</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -5261,7 +5285,7 @@ pg_catalog</CollationParentNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16397</RefTableId>
     </foreign-key>
-    <index id="323" parent="272" name="pk_aspnetusertokens">
+    <index id="327" parent="272" name="pk_aspnetusertokens">
       <ColNames>userid
 loginprovider
 name</ColNames>
@@ -5280,123 +5304,123 @@ pg_catalog</CollationParentNames>
 100
 100</CollationIds>
     </index>
-    <key id="324" parent="272" name="pk_aspnetusertokens">
+    <key id="328" parent="272" name="pk_aspnetusertokens">
       <ObjectId>16465</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16464</UnderlyingIndexId>
     </key>
-    <column id="325" parent="273" name="id">
+    <column id="329" parent="273" name="id">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="326" parent="273" name="firstname">
+    <column id="330" parent="273" name="firstname">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="327" parent="273" name="lastname">
+    <column id="331" parent="273" name="lastname">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="328" parent="273" name="username">
+    <column id="332" parent="273" name="username">
       <DasType>varchar(256)|0s</DasType>
       <Position>4</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="329" parent="273" name="normalizedusername">
+    <column id="333" parent="273" name="normalizedusername">
       <DasType>varchar(256)|0s</DasType>
       <Position>5</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="330" parent="273" name="email">
+    <column id="334" parent="273" name="email">
       <DasType>varchar(256)|0s</DasType>
       <Position>6</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="331" parent="273" name="normalizedemail">
+    <column id="335" parent="273" name="normalizedemail">
       <DasType>varchar(256)|0s</DasType>
       <Position>7</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="332" parent="273" name="emailconfirmed">
+    <column id="336" parent="273" name="emailconfirmed">
       <DasType>boolean|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StateNumber>733</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="333" parent="273" name="passwordhash">
+    <column id="337" parent="273" name="passwordhash">
       <DasType>text|0s</DasType>
       <Position>9</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="334" parent="273" name="securitystamp">
+    <column id="338" parent="273" name="securitystamp">
       <DasType>text|0s</DasType>
       <Position>10</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="335" parent="273" name="concurrencystamp">
+    <column id="339" parent="273" name="concurrencystamp">
       <DasType>text|0s</DasType>
       <Position>11</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="336" parent="273" name="phonenumber">
+    <column id="340" parent="273" name="phonenumber">
       <DasType>text|0s</DasType>
       <Position>12</Position>
       <StateNumber>733</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="337" parent="273" name="phonenumberconfirmed">
+    <column id="341" parent="273" name="phonenumberconfirmed">
       <DasType>boolean|0s</DasType>
       <NotNull>1</NotNull>
       <Position>13</Position>
       <StateNumber>733</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="338" parent="273" name="twofactorenabled">
+    <column id="342" parent="273" name="twofactorenabled">
       <DasType>boolean|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
       <StateNumber>733</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="339" parent="273" name="lockoutend">
+    <column id="343" parent="273" name="lockoutend">
       <DasType>timestamp with time zone|0s</DasType>
       <Position>15</Position>
       <StateNumber>733</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="340" parent="273" name="lockoutenabled">
+    <column id="344" parent="273" name="lockoutenabled">
       <DasType>boolean|0s</DasType>
       <NotNull>1</NotNull>
       <Position>16</Position>
       <StateNumber>733</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="341" parent="273" name="accessfailedcount">
+    <column id="345" parent="273" name="accessfailedcount">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>17</Position>
       <StateNumber>733</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="342" parent="273" name="pk_aspnetusers">
+    <index id="346" parent="273" name="pk_aspnetusers">
       <ColNames>id</ColNames>
       <ObjectId>16402</ObjectId>
       <Primary>1</Primary>
@@ -5407,7 +5431,7 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="343" parent="273" name="UserNameIndex">
+    <index id="347" parent="273" name="UserNameIndex">
       <ColNames>normalizedusername</ColNames>
       <ObjectId>16477</ObjectId>
       <StateNumber>733</StateNumber>
@@ -5417,7 +5441,7 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="344" parent="273" name="EmailIndex">
+    <index id="348" parent="273" name="EmailIndex">
       <ColNames>normalizedemail</ColNames>
       <ObjectId>16476</ObjectId>
       <StateNumber>733</StateNumber>
@@ -5426,55 +5450,55 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="345" parent="273" name="pk_aspnetusers">
+    <key id="349" parent="273" name="pk_aspnetusers">
       <ObjectId>16403</ObjectId>
       <Primary>1</Primary>
       <StateNumber>733</StateNumber>
       <UnderlyingIndexId>16402</UnderlyingIndexId>
     </key>
-    <column id="346" parent="274" name="householdid">
+    <column id="350" parent="274" name="householdid">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="347" parent="274" name="userid">
+    <column id="351" parent="274" name="userid">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="348" parent="274" name="role">
+    <column id="352" parent="274" name="role">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>738</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="349" parent="274" name="HouseholdUsers_householdid_fkey">
+    <foreign-key id="353" parent="274" name="HouseholdUsers_householdid_fkey">
       <ColNames>householdid</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16542</ObjectId>
+      <ObjectId>16600</ObjectId>
       <OnDelete>cascade</OnDelete>
       <StateNumber>738</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16478</RefTableId>
     </foreign-key>
-    <foreign-key id="350" parent="274" name="HouseholdUsers_userid_fkey">
+    <foreign-key id="354" parent="274" name="HouseholdUsers_userid_fkey">
       <ColNames>userid</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16547</ObjectId>
+      <ObjectId>16605</ObjectId>
       <OnDelete>cascade</OnDelete>
       <StateNumber>738</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16397</RefTableId>
     </foreign-key>
-    <index id="351" parent="274" name="HouseholdUsers_pkey">
+    <index id="355" parent="274" name="HouseholdUsers_pkey">
       <ColNames>userid</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16540</ObjectId>
+      <ObjectId>16598</ObjectId>
       <Primary>1</Primary>
       <StateNumber>738</StateNumber>
       <Unique>1</Unique>
@@ -5483,28 +5507,28 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="352" parent="274" name="HouseholdUsers_pkey">
+    <key id="356" parent="274" name="HouseholdUsers_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16541</ObjectId>
+      <ObjectId>16599</ObjectId>
       <Primary>1</Primary>
       <StateNumber>738</StateNumber>
-      <UnderlyingIndexId>16540</UnderlyingIndexId>
+      <UnderlyingIndexId>16598</UnderlyingIndexId>
     </key>
-    <column id="353" parent="275" name="migrationid">
+    <column id="357" parent="275" name="migrationid">
       <DasType>varchar(150)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>732</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="354" parent="275" name="productversion">
+    <column id="358" parent="275" name="productversion">
       <DasType>varchar(32)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>732</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="355" parent="275" name="pk___efmigrationshistory">
+    <index id="359" parent="275" name="pk___efmigrationshistory">
       <ColNames>migrationid</ColNames>
       <ObjectId>16388</ObjectId>
       <Primary>1</Primary>
@@ -5515,85 +5539,85 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="356" parent="275" name="pk___efmigrationshistory">
+    <key id="360" parent="275" name="pk___efmigrationshistory">
       <ObjectId>16389</ObjectId>
       <Primary>1</Primary>
       <StateNumber>732</StateNumber>
       <UnderlyingIndexId>16388</UnderlyingIndexId>
     </key>
-    <column id="357" parent="276" name="itemid">
+    <column id="361" parent="276" name="itemid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="358" parent="276" name="grocerylistid">
+    <column id="362" parent="276" name="grocerylistid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="359" parent="276" name="name">
+    <column id="363" parent="276" name="name">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="360" parent="276" name="amount">
+    <column id="364" parent="276" name="amount">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="361" parent="276" name="picture">
+    <column id="365" parent="276" name="picture">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="362" parent="276" name="grocerylistmodelgrocerylistid">
+    <column id="366" parent="276" name="grocerylistmodelgrocerylistid">
       <DasType>text|0s</DasType>
       <Position>6</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="363" parent="276" name="createdat">
+    <column id="367" parent="276" name="createdat">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="364" parent="276" name="lastmodified">
+    <column id="368" parent="276" name="lastmodified">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="365" parent="276" name="fk_grocerylistitems_grocerylists_grocerylistid">
+    <foreign-key id="369" parent="276" name="fk_grocerylistitems_grocerylists_grocerylistid">
       <ColNames>grocerylistid</ColNames>
-      <ObjectId>16523</ObjectId>
+      <ObjectId>16554</ObjectId>
       <OnDelete>cascade</OnDelete>
       <StateNumber>737</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16492</RefTableId>
+      <RefTableId>16499</RefTableId>
     </foreign-key>
-    <foreign-key id="366" parent="276" name="fk_grocerylistitems_grocerylists_grocerylistmodelgrocerylistid">
+    <foreign-key id="370" parent="276" name="fk_grocerylistitems_grocerylists_grocerylistmodelgrocerylistid">
       <ColNames>grocerylistmodelgrocerylistid</ColNames>
-      <ObjectId>16528</ObjectId>
+      <ObjectId>16559</ObjectId>
       <StateNumber>737</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16492</RefTableId>
+      <RefTableId>16499</RefTableId>
     </foreign-key>
-    <index id="367" parent="276" name="pk_grocerylistitems">
+    <index id="371" parent="276" name="pk_grocerylistitems">
       <ColNames>itemid</ColNames>
-      <ObjectId>16521</ObjectId>
+      <ObjectId>16552</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
       <Unique>1</Unique>
@@ -5602,69 +5626,69 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="368" parent="276" name="ix_grocerylistitems_grocerylistid">
+    <index id="372" parent="276" name="ix_grocerylistitems_grocerylistid">
       <ColNames>grocerylistid</ColNames>
-      <ObjectId>16533</ObjectId>
+      <ObjectId>16586</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="369" parent="276" name="ix_grocerylistitems_grocerylistmodelgrocerylistid">
+    <index id="373" parent="276" name="ix_grocerylistitems_grocerylistmodelgrocerylistid">
       <ColNames>grocerylistmodelgrocerylistid</ColNames>
-      <ObjectId>16534</ObjectId>
+      <ObjectId>16587</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="370" parent="276" name="pk_grocerylistitems">
-      <ObjectId>16522</ObjectId>
+    <key id="374" parent="276" name="pk_grocerylistitems">
+      <ObjectId>16553</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
-      <UnderlyingIndexId>16521</UnderlyingIndexId>
+      <UnderlyingIndexId>16552</UnderlyingIndexId>
     </key>
-    <column id="371" parent="277" name="grocerylistid">
+    <column id="375" parent="277" name="grocerylistid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="372" parent="277" name="househouldid">
+    <column id="376" parent="277" name="househouldid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="373" parent="277" name="createdat">
+    <column id="377" parent="277" name="createdat">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="374" parent="277" name="lastmodified">
+    <column id="378" parent="277" name="lastmodified">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="375" parent="277" name="fk_grocerylists_households_househouldid">
+    <foreign-key id="379" parent="277" name="fk_grocerylists_households_househouldid">
       <ColNames>househouldid</ColNames>
-      <ObjectId>16499</ObjectId>
+      <ObjectId>16506</ObjectId>
       <OnDelete>cascade</OnDelete>
       <StateNumber>737</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16478</RefTableId>
     </foreign-key>
-    <index id="376" parent="277" name="pk_grocerylists">
+    <index id="380" parent="277" name="pk_grocerylists">
       <ColNames>grocerylistid</ColNames>
-      <ObjectId>16497</ObjectId>
+      <ObjectId>16504</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
       <Unique>1</Unique>
@@ -5673,50 +5697,50 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="377" parent="277" name="ix_grocerylists_househouldid">
+    <index id="381" parent="277" name="ix_grocerylists_househouldid">
       <ColNames>househouldid</ColNames>
-      <ObjectId>16535</ObjectId>
+      <ObjectId>16588</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="378" parent="277" name="pk_grocerylists">
-      <ObjectId>16498</ObjectId>
+    <key id="382" parent="277" name="pk_grocerylists">
+      <ObjectId>16505</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
-      <UnderlyingIndexId>16497</UnderlyingIndexId>
+      <UnderlyingIndexId>16504</UnderlyingIndexId>
     </key>
-    <column id="379" parent="278" name="householdid">
+    <column id="383" parent="278" name="householdid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="380" parent="278" name="name">
+    <column id="384" parent="278" name="name">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="381" parent="278" name="createdat">
+    <column id="385" parent="278" name="createdat">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="382" parent="278" name="lastmodified">
+    <column id="386" parent="278" name="lastmodified">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="383" parent="278" name="pk_households">
+    <index id="387" parent="278" name="pk_households">
       <ColNames>householdid</ColNames>
       <ObjectId>16483</ObjectId>
       <Primary>1</Primary>
@@ -5727,65 +5751,65 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="384" parent="278" name="pk_households">
+    <key id="388" parent="278" name="pk_households">
       <ObjectId>16484</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
       <UnderlyingIndexId>16483</UnderlyingIndexId>
     </key>
-    <column id="385" parent="279" name="invitationid">
+    <column id="389" parent="279" name="ingredientid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="386" parent="279" name="inviteeuserid">
+    <column id="390" parent="279" name="mealid">
       <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>737</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="387" parent="279" name="inviteruserid">
-      <DasType>text|0s</DasType>
+    <column id="391" parent="279" name="name">
+      <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>737</StateNumber>
-      <TypeId>25</TypeId>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="388" parent="279" name="householdid">
-      <DasType>text|0s</DasType>
+    <column id="392" parent="279" name="amount">
+      <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>737</StateNumber>
-      <TypeId>25</TypeId>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="389" parent="279" name="createdat">
+    <column id="393" parent="279" name="createdat">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="390" parent="279" name="lastmodified">
+    <column id="394" parent="279" name="lastmodified">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>737</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="391" parent="279" name="fk_invitations_households_householdid">
-      <ColNames>householdid</ColNames>
-      <ObjectId>16511</ObjectId>
+    <foreign-key id="395" parent="279" name="fk_ingredients_meals_mealid">
+      <ColNames>mealid</ColNames>
+      <ObjectId>16542</ObjectId>
       <OnDelete>cascade</OnDelete>
       <StateNumber>737</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16478</RefTableId>
+      <RefTableId>16492</RefTableId>
     </foreign-key>
-    <index id="392" parent="279" name="pk_invitations">
-      <ColNames>invitationid</ColNames>
-      <ObjectId>16509</ObjectId>
+    <index id="396" parent="279" name="pk_ingredients">
+      <ColNames>ingredientid</ColNames>
+      <ObjectId>16540</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
       <Unique>1</Unique>
@@ -5794,20 +5818,318 @@ pg_catalog</CollationParentNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="393" parent="279" name="ix_invitations_householdid">
-      <ColNames>householdid</ColNames>
-      <ObjectId>16536</ObjectId>
+    <index id="397" parent="279" name="ix_ingredients_mealid">
+      <ColNames>mealid</ColNames>
+      <ObjectId>16589</ObjectId>
       <StateNumber>737</StateNumber>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="394" parent="279" name="pk_invitations">
-      <ObjectId>16510</ObjectId>
+    <key id="398" parent="279" name="pk_ingredients">
+      <ObjectId>16541</ObjectId>
       <Primary>1</Primary>
       <StateNumber>737</StateNumber>
-      <UnderlyingIndexId>16509</UnderlyingIndexId>
+      <UnderlyingIndexId>16540</UnderlyingIndexId>
+    </key>
+    <column id="399" parent="280" name="invitationid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="400" parent="280" name="inviteeuserid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="401" parent="280" name="inviteruserid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="402" parent="280" name="householdid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="403" parent="280" name="createdat">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="404" parent="280" name="lastmodified">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <foreign-key id="405" parent="280" name="fk_invitations_households_householdid">
+      <ColNames>householdid</ColNames>
+      <ObjectId>16518</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>737</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16478</RefTableId>
+    </foreign-key>
+    <index id="406" parent="280" name="pk_invitations">
+      <ColNames>invitationid</ColNames>
+      <ObjectId>16516</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="407" parent="280" name="ix_invitations_householdid">
+      <ColNames>householdid</ColNames>
+      <ObjectId>16590</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="408" parent="280" name="pk_invitations">
+      <ObjectId>16517</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <UnderlyingIndexId>16516</UnderlyingIndexId>
+    </key>
+    <column id="409" parent="281" name="mealplanid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="410" parent="281" name="householdid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="411" parent="281" name="weekno">
+      <DasType>date|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1082</TypeId>
+    </column>
+    <column id="412" parent="281" name="createdat">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="413" parent="281" name="lastmodified">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <foreign-key id="414" parent="281" name="fk_mealplans_households_householdid">
+      <ColNames>householdid</ColNames>
+      <ObjectId>16530</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>737</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16478</RefTableId>
+    </foreign-key>
+    <index id="415" parent="281" name="pk_mealplans">
+      <ColNames>mealplanid</ColNames>
+      <ObjectId>16528</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="416" parent="281" name="ix_mealplans_householdid">
+      <ColNames>householdid</ColNames>
+      <ObjectId>16591</ObjectId>
+      <StateNumber>737</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="417" parent="281" name="pk_mealplans">
+      <ObjectId>16529</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <UnderlyingIndexId>16528</UnderlyingIndexId>
+    </key>
+    <column id="418" parent="282" name="mealid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="419" parent="282" name="name">
+      <DasType>varchar(50)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="420" parent="282" name="description">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="421" parent="282" name="image">
+      <DasType>text|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="422" parent="282" name="createdat">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="423" parent="282" name="lastmodified">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="424" parent="282" name="pk_meals">
+      <ColNames>mealid</ColNames>
+      <ObjectId>16497</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="425" parent="282" name="pk_meals">
+      <ObjectId>16498</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <UnderlyingIndexId>16497</UnderlyingIndexId>
+    </key>
+    <column id="426" parent="283" name="mealsinplanid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="427" parent="283" name="mealid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="428" parent="283" name="mealplanid">
+      <DasType>text|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="429" parent="283" name="mealplanmodelmealplanid">
+      <DasType>text|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>737</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <foreign-key id="430" parent="283" name="fk_mealsinplans_meals_mealid">
+      <ColNames>mealid</ColNames>
+      <ObjectId>16581</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>737</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16492</RefTableId>
+    </foreign-key>
+    <foreign-key id="431" parent="283" name="fk_mealsinplans_mealplans_mealplanid">
+      <ColNames>mealplanid</ColNames>
+      <ObjectId>16571</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>737</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16523</RefTableId>
+    </foreign-key>
+    <foreign-key id="432" parent="283" name="fk_mealsinplans_mealplans_mealplanmodelmealplanid">
+      <ColNames>mealplanmodelmealplanid</ColNames>
+      <ObjectId>16576</ObjectId>
+      <StateNumber>737</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16523</RefTableId>
+    </foreign-key>
+    <index id="433" parent="283" name="pk_mealsinplans">
+      <ColNames>mealsinplanid</ColNames>
+      <ObjectId>16569</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="434" parent="283" name="ix_mealsinplans_mealid">
+      <ColNames>mealid</ColNames>
+      <ObjectId>16592</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="435" parent="283" name="ix_mealsinplans_mealplanid">
+      <ColNames>mealplanid</ColNames>
+      <ObjectId>16593</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <index id="436" parent="283" name="ix_mealsinplans_mealplanmodelmealplanid">
+      <ColNames>mealplanmodelmealplanid</ColNames>
+      <ObjectId>16594</ObjectId>
+      <StateNumber>737</StateNumber>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="437" parent="283" name="pk_mealsinplans">
+      <ObjectId>16570</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>737</StateNumber>
+      <UnderlyingIndexId>16569</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

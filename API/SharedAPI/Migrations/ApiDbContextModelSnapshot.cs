@@ -3,20 +3,17 @@ using System;
 using API.SharedAPI.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace API.SharedAPI.Persistence.Migrations
+namespace API.SharedAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240719105513_InitialApiMigration")]
-    partial class InitialApiMigration
+    partial class ApiDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,6 +185,149 @@ namespace API.SharedAPI.Persistence.Migrations
                     b.ToTable("invitations", (string)null);
                 });
 
+            modelBuilder.Entity("API.MealPlanner.Models.IngredientModel", b =>
+                {
+                    b.Property<string>("IngredientId")
+                        .HasColumnType("text")
+                        .HasColumnName("ingredientid");
+
+                    b.Property<string>("Amount")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("amount");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdat");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("lastmodified");
+
+                    b.Property<string>("MealId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("mealid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("name");
+
+                    b.HasKey("IngredientId")
+                        .HasName("pk_ingredients");
+
+                    b.HasIndex("MealId")
+                        .HasDatabaseName("ix_ingredients_mealid");
+
+                    b.ToTable("ingredients", (string)null);
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealModel", b =>
+                {
+                    b.Property<string>("MealId")
+                        .HasColumnType("text")
+                        .HasColumnName("mealid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdat");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text")
+                        .HasColumnName("image");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("lastmodified");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("name");
+
+                    b.HasKey("MealId")
+                        .HasName("pk_meals");
+
+                    b.ToTable("meals", (string)null);
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealPlanModel", b =>
+                {
+                    b.Property<string>("MealPlanId")
+                        .HasColumnType("text")
+                        .HasColumnName("mealplanid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdat");
+
+                    b.Property<string>("HouseholdId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("householdid");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("lastmodified");
+
+                    b.Property<DateTime>("WeekNo")
+                        .HasColumnType("date")
+                        .HasColumnName("weekno");
+
+                    b.HasKey("MealPlanId")
+                        .HasName("pk_mealplans");
+
+                    b.HasIndex("HouseholdId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_mealplans_householdid");
+
+                    b.ToTable("mealplans", (string)null);
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealsInPlan", b =>
+                {
+                    b.Property<string>("MealsInPlanId")
+                        .HasColumnType("text")
+                        .HasColumnName("mealsinplanid");
+
+                    b.Property<string>("MealId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("mealid");
+
+                    b.Property<string>("MealPlanId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("mealplanid");
+
+                    b.Property<string>("MealPlanModelMealPlanId")
+                        .HasColumnType("text")
+                        .HasColumnName("mealplanmodelmealplanid");
+
+                    b.HasKey("MealsInPlanId")
+                        .HasName("pk_mealsinplans");
+
+                    b.HasIndex("MealId")
+                        .HasDatabaseName("ix_mealsinplans_mealid");
+
+                    b.HasIndex("MealPlanId")
+                        .HasDatabaseName("ix_mealsinplans_mealplanid");
+
+                    b.HasIndex("MealPlanModelMealPlanId")
+                        .HasDatabaseName("ix_mealsinplans_mealplanmodelmealplanid");
+
+                    b.ToTable("mealsinplans", (string)null);
+                });
+
             modelBuilder.Entity("API.GroceryList.Models.GroceryItemModel", b =>
                 {
                     b.HasOne("API.GroceryList.Models.GroceryListModel", "GroceryList")
@@ -229,9 +369,69 @@ namespace API.SharedAPI.Persistence.Migrations
                     b.Navigation("Household");
                 });
 
+            modelBuilder.Entity("API.MealPlanner.Models.IngredientModel", b =>
+                {
+                    b.HasOne("API.MealPlanner.Models.MealModel", "Meal")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_ingredients_meals_mealid");
+
+                    b.Navigation("Meal");
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealPlanModel", b =>
+                {
+                    b.HasOne("API.Household.Models.HouseholdModel", "Household")
+                        .WithOne()
+                        .HasForeignKey("API.MealPlanner.Models.MealPlanModel", "HouseholdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_mealplans_households_householdid");
+
+                    b.Navigation("Household");
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealsInPlan", b =>
+                {
+                    b.HasOne("API.MealPlanner.Models.MealModel", "Meal")
+                        .WithMany()
+                        .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_mealsinplans_meals_mealid");
+
+                    b.HasOne("API.MealPlanner.Models.MealPlanModel", "MealPlan")
+                        .WithMany()
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_mealsinplans_mealplans_mealplanid");
+
+                    b.HasOne("API.MealPlanner.Models.MealPlanModel", null)
+                        .WithMany("Meals")
+                        .HasForeignKey("MealPlanModelMealPlanId")
+                        .HasConstraintName("fk_mealsinplans_mealplans_mealplanmodelmealplanid");
+
+                    b.Navigation("Meal");
+
+                    b.Navigation("MealPlan");
+                });
+
             modelBuilder.Entity("API.GroceryList.Models.GroceryListModel", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealModel", b =>
+                {
+                    b.Navigation("Ingredients");
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealPlanModel", b =>
+                {
+                    b.Navigation("Meals");
                 });
 #pragma warning restore 612, 618
         }
