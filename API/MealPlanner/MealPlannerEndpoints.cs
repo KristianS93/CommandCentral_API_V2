@@ -44,9 +44,41 @@ public static class MealPlannerEndpoints
 
         var meal = mealplanner.MapGroup("/meals").WithOpenApi().WithTags("Meals");
 
-        meal.MapPost("/", async ([FromBody]MealCreateDto meal, MealService service) =>
+        meal.MapPut("/{id}", async ([FromBody] MealEditDto mealData, MealService service) =>
         {
-            var result = await service.CreateMeal(meal);
+            var result = await service.EditMeal(mealData);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok();
+        });
+        
+        meal.MapGet("/{id}", async (string id, MealService service) =>
+        {
+            var result = await service.GetMealById(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok(result.Value);
+        });
+        
+        meal.MapDelete("/{id}", async (string id, MealService service) =>
+        {
+            var result = await service.DeleteMeal(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok();
+        });
+        
+        meal.MapPost("/", async ([FromBody]MealCreateDto mealData, MealService service) =>
+        {
+            var result = await service.CreateMeal(mealData);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
