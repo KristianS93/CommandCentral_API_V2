@@ -13,28 +13,44 @@ public static class MealPlannerEndpoints
         #region Ingredients
 
         var ingredients = mealplanner.MapGroup("/ingredients").WithOpenApi().WithTags("Ingredients");
-        ingredients.MapGet("/{id}", async (string id) =>
+        ingredients.MapGet("/{id}", async (string id, IngredientService service) =>
         {
-            await Task.Delay(1);
-            return Results.Ok();
+            var result = await service.GetIngredient(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok(result.Value);
         });
-
-        ingredients.MapDelete("/{id}", async (string id) =>
+        
+        ingredients.MapDelete("/{id}", async (string id, IngredientService service) =>
         {
-            await Task.Delay(1);
+            var result = await service.DeleteIngredient(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
             return Results.Ok();
         });
         
-        ingredients.MapPut("/", async () =>
+        ingredients.MapPut("/", async ([FromBody]IngredientDto data, IngredientService service) =>
         {
-            await Task.Delay(1);
-            return Results.Ok(); 
-        });
-
-        ingredients.MapPost("/", async () =>
-        {
-            await Task.Delay(1);
+            var result = await service.EditIngredient(data);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
             return Results.Ok();
+        });
+        
+        ingredients.MapPost("/", async ([FromBody]IngredientCreateDto data, IngredientService service) =>
+        {
+            var result = await service.CreateIngredient(data);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Created();
         });
         
 
