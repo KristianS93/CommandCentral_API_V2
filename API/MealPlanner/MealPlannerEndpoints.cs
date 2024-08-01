@@ -106,7 +106,31 @@ public static class MealPlannerEndpoints
         #endregion
 
         #region MealPlan
+        // get mealplan
 
+        mealplanner.MapGet("/{id}", async (string id, MealPlanService service) =>
+        {
+            var result = await service.GetMealplanById(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Ok(result.Value);
+        });
+        
+        // create mealplan
+        
+        // delete mealplan
+        
+        // edit mealplan
+        
+        // clear mealplan
+        
+        // auto add x amount of meals from own meal library
+        
+        // transfer to grocery list.
+        
         
 
         #endregion
