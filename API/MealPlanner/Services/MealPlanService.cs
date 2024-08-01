@@ -20,6 +20,22 @@ public class MealPlanService
         return new Result<List<MealPlanDto>>();
     }
 
+    public async Task<Result> DeleteMealPlan(string id)
+    {
+        if (id.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+
+        var mealplan = await _context.MealPlans.FindAsync(id);
+        if (mealplan is null)
+        {
+            return Result.Fail("Error retrieving mealplan");
+        }
+        _context.MealPlans.Remove(mealplan);
+        await _context.SaveChangesAsync();
+        return Result.Ok();
+    }
     public async Task<Result<MealPlanDto>> GetMealplanById(string id)
     {
         
@@ -68,5 +84,24 @@ public class MealPlanService
         // var result = new MealPlanDto(mealplanModel.MealPlanId, mealplanModel.WeekNo, mealsDto);
         //
         // return result;
+    }
+
+    public async Task<Result> ClearMealPlan(string id)
+    {
+        if (id.IsNullOrEmpty())
+        {
+            return Result.Fail("Id missing");
+        }
+
+        var mealsInplan = await _context.MealsInPlans.Where(obj => obj.MealPlanId == id).ToListAsync();
+        Console.WriteLine("Count " + mealsInplan.Count);
+        if (mealsInplan.Count > 0)
+        {
+            Console.WriteLine("No meals");
+            _context.MealsInPlans.RemoveRange(mealsInplan);
+            await _context.SaveChangesAsync();
+        }
+        
+        return Result.Ok();
     }
 }

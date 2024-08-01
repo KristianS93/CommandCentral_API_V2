@@ -115,22 +115,43 @@ public static class MealPlannerEndpoints
             {
                 return Results.BadRequest(result.Errors);
             }
-
             return Results.Ok(result.Value);
         });
         
         // create mealplan
         
         // delete mealplan
+        mealplanner.MapDelete("/{id}", async (string id, MealPlanService service) =>
+        {
+            var result = await service.DeleteMealPlan(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok();
+        });
         
         // edit mealplan
         
         // clear mealplan
         
+        mealplanner.MapDelete("/clear/{id}", async (string id, MealPlanService service) =>
+        {
+            var result = await service.ClearMealPlan(id);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok();
+        });
+        
         // auto add x amount of meals from own meal library
         
         // transfer to grocery list.
-        
+        mealplanner.MapPut("/groceries/{id}", async (string mealplanId) =>
+        {
+            await Task.Delay(1);
+        });
         
 
         #endregion
