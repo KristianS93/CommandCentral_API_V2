@@ -181,8 +181,7 @@ namespace API.SharedAPI.Migrations
                 {
                     mealsinplanid = table.Column<string>(type: "text", nullable: false),
                     mealid = table.Column<string>(type: "text", nullable: false),
-                    mealplanid = table.Column<string>(type: "text", nullable: false),
-                    mealplanmodelmealplanid = table.Column<string>(type: "text", nullable: true)
+                    mealplanid = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,11 +192,6 @@ namespace API.SharedAPI.Migrations
                         principalTable: "mealplans",
                         principalColumn: "mealplanid",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_mealsinplans_mealplans_mealplanmodelmealplanid",
-                        column: x => x.mealplanmodelmealplanid,
-                        principalTable: "mealplans",
-                        principalColumn: "mealplanid");
                     table.ForeignKey(
                         name: "fk_mealsinplans_meals_mealid",
                         column: x => x.mealid,
@@ -251,11 +245,6 @@ namespace API.SharedAPI.Migrations
                 name: "ix_mealsinplans_mealplanid",
                 table: "mealsinplans",
                 column: "mealplanid");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_mealsinplans_mealplanmodelmealplanid",
-                table: "mealsinplans",
-                column: "mealplanmodelmealplanid");
         }
 
         /// <inheritdoc />

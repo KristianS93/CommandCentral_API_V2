@@ -317,10 +317,6 @@ namespace API.SharedAPI.Migrations
                         .HasColumnType("text")
                         .HasColumnName("mealplanid");
 
-                    b.Property<string>("MealPlanModelMealPlanId")
-                        .HasColumnType("text")
-                        .HasColumnName("mealplanmodelmealplanid");
-
                     b.HasKey("MealsInPlanId")
                         .HasName("pk_mealsinplans");
 
@@ -329,9 +325,6 @@ namespace API.SharedAPI.Migrations
 
                     b.HasIndex("MealPlanId")
                         .HasDatabaseName("ix_mealsinplans_mealplanid");
-
-                    b.HasIndex("MealPlanModelMealPlanId")
-                        .HasDatabaseName("ix_mealsinplans_mealplanmodelmealplanid");
 
                     b.ToTable("mealsinplans", (string)null);
                 });
@@ -423,16 +416,11 @@ namespace API.SharedAPI.Migrations
                         .HasConstraintName("fk_mealsinplans_meals_mealid");
 
                     b.HasOne("API.MealPlanner.Models.MealPlanModel", "MealPlan")
-                        .WithMany()
+                        .WithMany("Meals")
                         .HasForeignKey("MealPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_mealsinplans_mealplans_mealplanid");
-
-                    b.HasOne("API.MealPlanner.Models.MealPlanModel", null)
-                        .WithMany("Meals")
-                        .HasForeignKey("MealPlanModelMealPlanId")
-                        .HasConstraintName("fk_mealsinplans_mealplans_mealplanmodelmealplanid");
 
                     b.Navigation("Meal");
 

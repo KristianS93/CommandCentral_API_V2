@@ -119,6 +119,16 @@ public static class MealPlannerEndpoints
         });
         
         // create mealplan
+
+        mealplanner.MapPost("/", async ([FromBody] MealPlanCreateDto data, MealPlanService service) =>
+        {
+            var result = await service.CreateMealPlan(data);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Created();
+        });
         
         // delete mealplan
         mealplanner.MapDelete("/{id}", async (string id, MealPlanService service) =>
@@ -132,6 +142,16 @@ public static class MealPlannerEndpoints
         });
         
         // edit mealplan
+
+        mealplanner.MapPut("/{id}", async ([FromBody]MealPlanEditDto data, MealPlanService service) =>
+        {
+            var result = await service.EditMealPlan(data);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok();
+        });
         
         // clear mealplan
         
@@ -158,10 +178,7 @@ public static class MealPlannerEndpoints
             return Results.Ok();
         });
         
-
         #endregion
-        
-        
         
         return app;
     }
