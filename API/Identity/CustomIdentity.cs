@@ -23,6 +23,7 @@ public static class CustomIdentity
         
         // Register
         var enableRegister = Environment.GetEnvironmentVariable("ENABLE_REGISTER");
+        Console.WriteLine("Register set to: "+ enableRegister);
         if (enableRegister is not null && enableRegister == "true")
         {
             routeGroup.MapPost("/register", async Task<Results<Created, ValidationProblem>>(UserManager<CCAIdentity> userManager, [FromBody]RegisterUserDto registration) =>

@@ -52,7 +52,7 @@ public class MealService
         var meal = new MealDto(mealData.MealId, mealData.Name, mealData.Description, ingredients);
         return meal;
     }
-    public async Task<Result> CreateMeal(MealCreateDto mealData)
+    public async Task<Result> CreateMeal(MealCreateDto mealData, string householdId)
     {
         if (mealData.Name.IsNullOrEmpty())
         {
@@ -63,7 +63,7 @@ public class MealService
         {
             Name = mealData.Name,
             Description = mealData.Description ?? "",
-            HouseholdId = mealData.HouseholdId,
+            HouseholdId = householdId,
         };
         
         await _context.Meals.AddAsync(meal);
