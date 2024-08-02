@@ -228,8 +228,7 @@ namespace API.SharedAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "ix_mealplans_householdid",
                 table: "mealplans",
-                column: "householdid",
-                unique: true);
+                column: "householdid");
 
             migrationBuilder.CreateIndex(
                 name: "ix_meals_householdid",

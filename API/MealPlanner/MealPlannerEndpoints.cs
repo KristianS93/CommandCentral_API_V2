@@ -166,6 +166,15 @@ public static class MealPlannerEndpoints
         });
         
         // auto add x amount of meals from own meal library
+        mealplanner.MapPost("/auto", async ([FromBody]AutoMealPlanDto data, MealPlanService service) =>
+        {
+            var result = await service.AutoMealPlan(data);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Created();
+        });
         
         // transfer to grocery list.
         mealplanner.MapPut("/groceries/{id}", async (string mealplanId, MealPlanService service) =>

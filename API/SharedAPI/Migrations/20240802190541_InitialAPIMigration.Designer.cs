@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.SharedAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240802180119_InitialAPIMigration")]
+    [Migration("20240802190541_InitialAPIMigration")]
     partial class InitialAPIMigration
     {
         /// <inheritdoc />
@@ -298,7 +298,6 @@ namespace API.SharedAPI.Migrations
                         .HasName("pk_mealplans");
 
                     b.HasIndex("HouseholdId")
-                        .IsUnique()
                         .HasDatabaseName("ix_mealplans_householdid");
 
                     b.ToTable("mealplans", (string)null);
@@ -400,8 +399,8 @@ namespace API.SharedAPI.Migrations
             modelBuilder.Entity("API.MealPlanner.Models.MealPlanModel", b =>
                 {
                     b.HasOne("API.Household.Models.HouseholdModel", "Household")
-                        .WithOne()
-                        .HasForeignKey("API.MealPlanner.Models.MealPlanModel", "HouseholdId")
+                        .WithMany()
+                        .HasForeignKey("HouseholdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_mealplans_households_householdid");

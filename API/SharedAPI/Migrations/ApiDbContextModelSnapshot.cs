@@ -295,7 +295,6 @@ namespace API.SharedAPI.Migrations
                         .HasName("pk_mealplans");
 
                     b.HasIndex("HouseholdId")
-                        .IsUnique()
                         .HasDatabaseName("ix_mealplans_householdid");
 
                     b.ToTable("mealplans", (string)null);
@@ -397,8 +396,8 @@ namespace API.SharedAPI.Migrations
             modelBuilder.Entity("API.MealPlanner.Models.MealPlanModel", b =>
                 {
                     b.HasOne("API.Household.Models.HouseholdModel", "Household")
-                        .WithOne()
-                        .HasForeignKey("API.MealPlanner.Models.MealPlanModel", "HouseholdId")
+                        .WithMany()
+                        .HasForeignKey("HouseholdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_mealplans_households_householdid");

@@ -160,6 +160,36 @@ public class MealPlanService
         return Result.Ok();
     }
 
+    public async Task<Result> AutoMealPlan(AutoMealPlanDto data)
+    {
+        if (data.MealPlanId.IsNullOrEmpty() || data.HouseholdId.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+
+        if (data.MealsToAdd == 0)
+        {
+            return Result.Ok();
+        }
+
+        var meals = await _context.Meals.Where(obj => obj.HouseholdId == data.HouseholdId).ToListAsync();
+        Random rnd = new Random();
+        var itemsToadd = new List<MealsInPlan>();
+        for (int i = 0; i < data.MealsToAdd; i++)
+        {
+            var item = meals[rnd.Next(0, meals.Count)];
+            itemsToadd.Add(new MealsInPlan
+            {
+                MealPlanId = data.MealPlanId,
+                MealId = item.MealId,
+            });
+        }
+
+        await _context.MealsInPlans.AddRangeAsync(itemsToadd);
+        await _context.SaveChangesAsync();
+        return Result.Ok();
+    }
+
     public async Task<Result> EditMealPlan(MealPlanEditDto data)
     {
         if (data.MealPlanid.IsNullOrEmpty())

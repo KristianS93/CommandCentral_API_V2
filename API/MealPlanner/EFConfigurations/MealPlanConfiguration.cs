@@ -12,8 +12,8 @@ public class MealPlanConfiguration : IEntityTypeConfiguration<MealPlanModel>
         builder.HasKey(key => key.MealPlanId);
 
         builder.HasOne<HouseholdModel>(obj => obj.Household)
-            .WithOne()
-            .HasForeignKey<MealPlanModel>(key => key.HouseholdId)
+            .WithMany()
+            .HasForeignKey(key => key.HouseholdId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany<MealsInPlan>(obj => obj.Meals)
