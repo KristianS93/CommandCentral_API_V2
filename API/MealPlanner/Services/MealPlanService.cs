@@ -1,3 +1,4 @@
+using API.GroceryList.Models;
 using API.MealPlanner.Models;
 using API.SharedAPI.Persistence;
 using FluentResults;
@@ -103,5 +104,31 @@ public class MealPlanService
         }
         
         return Result.Ok();
+    }
+
+    public async Task<Result> TransferMealPlan(string id)
+    {
+        if (id.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+
+        var groceryItems = await _context.MealsInPlans
+            .Where(m => m.MealPlanId == id)
+            .SelectMany(m => m.Meal!.Ingredients!.Select(n => new IngredientModel
+            {
+                Name = n.Name,
+                Amount = n.Amount,
+            })).ToListAsync();
+        
+        // this works items are succesfully converted, have to add the grocerylist id for this to work. 
+        Console.WriteLine("Items " + groceryItems.Count);
+        foreach (var item in groceryItems)
+        {
+            Console.WriteLine(item.Name);
+        }
+
+        return Result.Ok();
+
     }
 }

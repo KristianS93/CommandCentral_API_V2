@@ -148,9 +148,14 @@ public static class MealPlannerEndpoints
         // auto add x amount of meals from own meal library
         
         // transfer to grocery list.
-        mealplanner.MapPut("/groceries/{id}", async (string mealplanId) =>
+        mealplanner.MapPut("/groceries/{id}", async (string mealplanId, MealPlanService service) =>
         {
-            await Task.Delay(1);
+            var result = await service.TransferMealPlan(mealplanId);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+            return Results.Ok();
         });
         
 
