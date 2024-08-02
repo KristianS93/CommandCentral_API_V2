@@ -240,6 +240,11 @@ namespace API.SharedAPI.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
+                    b.Property<string>("HouseholdId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("householdid");
+
                     b.Property<string>("Image")
                         .HasColumnType("text")
                         .HasColumnName("image");
@@ -256,6 +261,9 @@ namespace API.SharedAPI.Migrations
 
                     b.HasKey("MealId")
                         .HasName("pk_meals");
+
+                    b.HasIndex("HouseholdId")
+                        .HasDatabaseName("ix_meals_householdid");
 
                     b.ToTable("meals", (string)null);
                 });
@@ -379,6 +387,18 @@ namespace API.SharedAPI.Migrations
                         .HasConstraintName("fk_ingredients_meals_mealid");
 
                     b.Navigation("Meal");
+                });
+
+            modelBuilder.Entity("API.MealPlanner.Models.MealModel", b =>
+                {
+                    b.HasOne("API.Household.Models.HouseholdModel", "Household")
+                        .WithMany()
+                        .HasForeignKey("HouseholdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_meals_households_householdid");
+
+                    b.Navigation("Household");
                 });
 
             modelBuilder.Entity("API.MealPlanner.Models.MealPlanModel", b =>

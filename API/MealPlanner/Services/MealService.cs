@@ -63,6 +63,7 @@ public class MealService
         {
             Name = mealData.Name,
             Description = mealData.Description ?? "",
+            HouseholdId = mealData.HouseholdId,
         };
         
         await _context.Meals.AddAsync(meal);

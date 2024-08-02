@@ -1,3 +1,4 @@
+using API.Household.Models;
 using API.MealPlanner.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,6 +14,11 @@ public class MealConfiguration : IEntityTypeConfiguration<MealModel>
         builder.HasMany<IngredientModel>(obj => obj.Ingredients)
             .WithOne(ingredient => ingredient.Meal)
             .HasForeignKey(key => key.MealId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne<HouseholdModel>(obj => obj.Household)
+            .WithMany()
+            .HasForeignKey(key => key.HouseholdId)
             .OnDelete(DeleteBehavior.Cascade);
         
         builder.Property(e => e.CreatedAt)

@@ -39,22 +39,6 @@ namespace API.SharedAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "meals",
-                columns: table => new
-                {
-                    mealid = table.Column<string>(type: "text", nullable: false),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    description = table.Column<string>(type: "text", nullable: false),
-                    image = table.Column<string>(type: "text", nullable: true),
-                    createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
-                    lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_meals", x => x.mealid);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "grocerylists",
                 columns: table => new
                 {
@@ -118,24 +102,25 @@ namespace API.SharedAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ingredients",
+                name: "meals",
                 columns: table => new
                 {
-                    ingredientid = table.Column<string>(type: "text", nullable: false),
                     mealid = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    amount = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    householdid = table.Column<string>(type: "text", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    image = table.Column<string>(type: "text", nullable: true),
                     createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
                     lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_ingredients", x => x.ingredientid);
+                    table.PrimaryKey("pk_meals", x => x.mealid);
                     table.ForeignKey(
-                        name: "fk_ingredients_meals_mealid",
-                        column: x => x.mealid,
-                        principalTable: "meals",
-                        principalColumn: "mealid",
+                        name: "fk_meals_households_householdid",
+                        column: x => x.householdid,
+                        principalTable: "households",
+                        principalColumn: "householdid",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -166,6 +151,28 @@ namespace API.SharedAPI.Migrations
                         column: x => x.grocerylistmodelgrocerylistid,
                         principalTable: "grocerylists",
                         principalColumn: "grocerylistid");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ingredients",
+                columns: table => new
+                {
+                    ingredientid = table.Column<string>(type: "text", nullable: false),
+                    mealid = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    amount = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_ingredients", x => x.ingredientid);
+                    table.ForeignKey(
+                        name: "fk_ingredients_meals_mealid",
+                        column: x => x.mealid,
+                        principalTable: "meals",
+                        principalColumn: "mealid",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -229,6 +236,11 @@ namespace API.SharedAPI.Migrations
                 table: "mealplans",
                 column: "householdid",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_meals_householdid",
+                table: "meals",
+                column: "householdid");
 
             migrationBuilder.CreateIndex(
                 name: "ix_mealsinplans_mealid",
