@@ -14,6 +14,19 @@ public class MealService
         _context = context;
     }
 
+    public async Task<Result<List<MealInfoDto>>> GetMeals(string householdId)
+    {
+        if (householdId.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+
+        var meals = await _context.Meals
+            .Where(m => m.HouseholdId == householdId)
+            .Select(n => new MealInfoDto(n.MealId, n.Name))
+            .ToListAsync();
+        return meals;
+    }
     public async Task<Result> EditMeal(MealEditDto mealData)
     {
         var meal = await _context.Meals.FindAsync(mealData.MealId);

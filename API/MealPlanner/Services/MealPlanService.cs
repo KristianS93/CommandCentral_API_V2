@@ -14,14 +14,42 @@ public class MealPlanService
     {
         _context = context;
     }
-    
+
+    public async Task<Result> AddMealToPlan(string mealPlanId, string householdId, MealPlanAddMeal data)
+    {
+        if (mealPlanId.IsNullOrEmpty() || householdId.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+
+        var mealExists = _context.Meals.Count(m => m.MealId == data.MealId && m.HouseholdId == householdId);
+        if (mealExists == 0)
+        {
+            return Result.Fail("Error retreiving meal");
+        }
+
+        var planExists = _context.MealPlans.Count(p => p.MealPlanId == mealPlanId && p.HouseholdId == householdId);
+        if (planExists == 0)
+        {
+            return Result.Fail("Error retreiving plan");
+        }
+
+        var mealInplan = new MealsInPlan
+        {
+            MealPlanId = mealPlanId,
+            MealId = data.MealId
+        };
+        await _context.MealsInPlans.AddAsync(mealInplan);
+        await _context.SaveChangesAsync();
+        return Result.Ok();
+    }
     public async Task<Result<List<MealPlansDto>>> GetMealPlans(string householdId)
     {
         if (householdId.IsNullOrEmpty())
         {
             return Result.Fail("Missing household id");
         }
-
+        
         var mealPlans = await _context.MealPlans
             .Where(hh => hh.HouseholdId == householdId)
             .Select(mp => new MealPlansDto(
@@ -33,14 +61,17 @@ public class MealPlanService
         return Result.Ok(mealPlans);
     }
 
-    public async Task<Result> DeleteMealPlan(string id)
+    public async Task<Result> DeleteMealPlan(string id, string householdId)
     {
         if (id.IsNullOrEmpty())
         {
             return Result.Fail("Missing id");
         }
+        
+        // confirm the meal id is associated to this household
 
-        var mealplan = await _context.MealPlans.FindAsync(id);
+        var mealplan = await _context.MealPlans
+            .FirstOrDefaultAsync(m => m.MealPlanId == id && m.HouseholdId == householdId);
         if (mealplan is null)
         {
             return Result.Fail("Error retrieving mealplan");
@@ -49,7 +80,7 @@ public class MealPlanService
         await _context.SaveChangesAsync();
         return Result.Ok();
     }
-    public async Task<Result<MealPlanDto>> GetMealplanById(string id)
+    public async Task<Result<MealPlanDto>> GetMealplanById(string id, string householdId)
     {
         
         if (string.IsNullOrEmpty(id))
@@ -58,7 +89,7 @@ public class MealPlanService
         }
 
         var mealplanDto = await _context.MealPlans
-            .Where(mp => mp.MealPlanId == id)
+            .Where(mp => mp.MealPlanId == id && mp.HouseholdId == householdId)
             .Select(mp => new MealPlanDto(
                 mp.MealPlanId,
                 mp.WeekNo,
@@ -77,17 +108,23 @@ public class MealPlanService
         return Result.Ok(mealplanDto);
     }
 
-    public async Task<Result> ClearMealPlan(string id)
+    public async Task<Result> ClearMealPlan(string id, string householdId)
     {
-        if (id.IsNullOrEmpty())
+        if (id.IsNullOrEmpty() || householdId.IsNullOrEmpty())
         {
             return Result.Fail("Id missing");
         }
 
-        var mealsInplan = await _context.MealsInPlans.Where(obj => obj.MealPlanId == id).ToListAsync();
-        if (!mealsInplan.IsNullOrEmpty())
+        var meals = await _context.MealPlans.Include(obj => obj.Meals)
+            .FirstOrDefaultAsync(mp => mp.HouseholdId == householdId && mp.MealPlanId == id);
+        if (meals is null)
         {
-            _context.MealsInPlans.RemoveRange(mealsInplan);
+            return Result.Fail("Could not retrieve meals");
+        }
+
+        if (!meals.Meals.IsNullOrEmpty())
+        {
+            _context.MealsInPlans.RemoveRange(meals.Meals!);
             await _context.SaveChangesAsync();
         }
         
@@ -108,17 +145,19 @@ public class MealPlanService
         {
             return Result.Fail("Error loading grocerylist");
         }
-        
+
         var groceryItems = await _context.MealsInPlans
-            .Where(m => m.MealPlanId == id)
-            .SelectMany(m => m.Meal!.Ingredients!.Select(n => new GroceryItemModel
-            {
-                Name = n.Name,
-                Amount = n.Amount,
-                GroceryListId = groceryList.GroceryListId
-            })).ToListAsync();
+            .Include(obj => obj.MealPlan)
+            .Where(m => m.MealPlanId == id && m.MealPlan!.HouseholdId == householdId)
+            .SelectMany(m => m.Meal!.Ingredients!.Select(
+                n => new GroceryItemModel
+                {
+                    Name = n.Name,
+                    Amount = n.Amount,
+                    GroceryListId = groceryList.GroceryListId
+                }))
+            .ToListAsync();
         
-        // this works items are succesfully converted, have to add the grocerylist id for this to work. 
         groceryList.Items!.AddRange(groceryItems);
         await _context.SaveChangesAsync();
         return Result.Ok();
@@ -152,14 +191,15 @@ public class MealPlanService
         return Result.Ok();
     }
 
-    public async Task<Result> AutoMealPlan(AutoMealPlanDto data, string householdId)
+    public async Task<Result> GenerateMealPlan(AutoMealPlanDto data, string householdId)
     {
         if (data.MealPlanId.IsNullOrEmpty() || householdId.IsNullOrEmpty())
         {
             return Result.Fail("Missing id");
         }
 
-        var mealplan = await _context.MealPlans.FindAsync(data.MealPlanId);
+        var mealplan = await _context.MealPlans
+            .FirstOrDefaultAsync(p => p.MealPlanId == data.MealPlanId && p.HouseholdId == householdId);
         if (mealplan is null)
         {
             return Result.Fail("Error finding mealplan");
@@ -197,14 +237,15 @@ public class MealPlanService
         return Result.Ok();
     }
 
-    public async Task<Result> EditMealPlan(MealPlanEditDto data)
+    public async Task<Result> EditMealPlan(MealPlanEditDto data, string householdId)
     {
-        if (data.MealPlanid.IsNullOrEmpty())
+        if (data.MealPlanid.IsNullOrEmpty() || householdId.IsNullOrEmpty())
         {
             return Result.Fail("Missing id");
         }
 
-        var mealplan = await _context.MealPlans.Include(obj => obj.Meals).FirstOrDefaultAsync(key => key.MealPlanId == data.MealPlanid);
+        var mealplan = await _context.MealPlans.Include(obj => obj.Meals)
+            .FirstOrDefaultAsync(key => key.MealPlanId == data.MealPlanid && key.HouseholdId == householdId);
         if (mealplan is null)
         {
             return Result.Fail("Failure getting plan");
