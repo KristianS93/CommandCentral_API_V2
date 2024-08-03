@@ -14,14 +14,22 @@ public class IngredientService
         _context = context;
     }
 
-    public async Task<Result> EditIngredient(IngredientDto data)
+    public async Task<Result> EditIngredient(IngredientDto data, string householdId)
     {
-        if (data.IngredientId.IsNullOrEmpty() || data.Name.IsNullOrEmpty())
+        if (householdId.IsNullOrEmpty())
         {
-            return Result.Fail("Missing properties");
+            return Result.Fail("Missing id");
         }
 
-        var ingredient = await _context.Ingredients.FindAsync(data.IngredientId);
+        var meal = await _context.Meals
+            .Include(i => i.Ingredients)
+            .FirstOrDefaultAsync(k => k.MealId == data.MealId && k.HouseholdId == householdId);
+
+        if (meal is null)
+        {
+            return Result.Fail("Error finding associated meal");
+        }
+        var ingredient = meal.Ingredients!.FirstOrDefault(i => i.IngredientId == data.IngredientId);
         if (ingredient is null)
         {
             return Result.Fail("Error finding ingredient");
@@ -33,14 +41,22 @@ public class IngredientService
         return Result.Ok();
     }
     
-    public async Task<Result> DeleteIngredient(string id)
+    public async Task<Result> DeleteIngredient(string id, string mealId, string householdId)
     {
-        if (id.IsNullOrEmpty())
+        if (id.IsNullOrEmpty() || mealId.IsNullOrEmpty() || householdId.IsNullOrEmpty())
         {
             return Result.Fail("No id provided");
         }
-
-        var ingredient = await _context.Ingredients.FindAsync(id);
+        
+        var meal = await _context.Meals
+            .Include(i => i.Ingredients)
+            .FirstOrDefaultAsync(k => k.MealId == mealId && k.HouseholdId == householdId);
+        if (meal is null)
+        {
+            return Result.Fail("Error finding meal");
+        }
+        
+        var ingredient = meal.Ingredients!.FirstOrDefault(i => i.IngredientId == id);
         if (ingredient is null)
         {
             return Result.Fail("Error finding ingredient");
@@ -50,13 +66,18 @@ public class IngredientService
         return Result.Ok();
     }
     
-    public async Task<Result> CreateIngredient(IngredientCreateDto ingredientData)
+    public async Task<Result> CreateIngredient(IngredientCreateDto ingredientData, string householdId)
     {
         if (ingredientData.MealId.IsNullOrEmpty() || ingredientData.Name.IsNullOrEmpty())
         {
             return Result.Fail("Missing information");
         }
 
+        var mealExists = _context.Meals.Count(m => m.MealId == ingredientData.MealId && m.HouseholdId == householdId);
+        if (mealExists == 0)
+        {
+            return Result.Fail("Missing meal");
+        }
         var newIngredient = new IngredientModel
         {
             MealId = ingredientData.MealId,
@@ -69,22 +90,29 @@ public class IngredientService
         return Result.Ok();
     }
 
-    public async Task<Result<IngredientDto>> GetIngredient(string id)
+    public async Task<Result<IngredientDto>> GetIngredient(string id, string mealId, string householdId)
     {
-        if (id.IsNullOrEmpty())
+        if (id.IsNullOrEmpty() || mealId.IsNullOrEmpty() || householdId.IsNullOrEmpty())
         {
             return Result.Fail("No id provided");
         }
 
-        var ingredientModel = await _context.Ingredients
+        var meal = await _context.Meals
+            .Include(i => i.Ingredients)
             .AsNoTracking()
-            .SingleOrDefaultAsync(o => o.IngredientId == id);
-        if (ingredientModel is null)
+            .FirstOrDefaultAsync(m => m.MealId == mealId && m.HouseholdId == householdId);
+        if (meal is null)
+        {
+            return Result.Fail("Missing meal");
+        }
+
+        var ingredient = meal.Ingredients!.FirstOrDefault(i => i.IngredientId == id);
+        if (ingredient is null)
         {
             return Result.Fail("Error retrieving ingredient");
         }
 
-        var dto = new IngredientDto(ingredientModel.IngredientId, ingredientModel.Name, ingredientModel.Amount);
+        var dto = new IngredientDto(ingredient.IngredientId, ingredient.MealId, ingredient.Name, ingredient.Amount);
         return dto;
     }
     

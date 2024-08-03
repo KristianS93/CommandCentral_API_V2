@@ -15,11 +15,12 @@ public static class MealPlannerEndpoints
     {
 
         #region Ingredients
-
+        
         var ingredients = app.MapGroup("/ingredients").WithOpenApi().WithTags("Ingredients");
-        ingredients.MapGet("/{id}", async (string id, IngredientService service) =>
+        ingredients.MapGet("/{id}", async (string id, [FromBody]MealPlanAddMeal mealId, IngredientService service, ClaimsPrincipal principal) =>
         {
-            var result = await service.GetIngredient(id);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.GetIngredient(id, mealId.MealId, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -27,9 +28,10 @@ public static class MealPlannerEndpoints
             return Results.Ok(result.Value);
         }).RequireAuthorization(Roles.Member);
         
-        ingredients.MapDelete("/{id}", async (string id, IngredientService service) =>
+        ingredients.MapDelete("/{id}", async (string id, [FromBody]MealPlanAddMeal mealId, ClaimsPrincipal principal, IngredientService service) =>
         {
-            var result = await service.DeleteIngredient(id);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.DeleteIngredient(id, mealId.MealId, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -37,9 +39,10 @@ public static class MealPlannerEndpoints
             return Results.Ok();
         }).RequireAuthorization(Roles.Member);
         
-        ingredients.MapPut("/", async ([FromBody]IngredientDto data, IngredientService service) =>
+        ingredients.MapPut("/", async ([FromBody]IngredientDto data, IngredientService service, ClaimsPrincipal principal) =>
         {
-            var result = await service.EditIngredient(data);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.EditIngredient(data, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -47,9 +50,10 @@ public static class MealPlannerEndpoints
             return Results.Ok();
         }).RequireAuthorization(Roles.Member);
         
-        ingredients.MapPost("/", async ([FromBody]IngredientCreateDto data, IngredientService service) =>
+        ingredients.MapPost("/", async ([FromBody]IngredientCreateDto data, IngredientService service, ClaimsPrincipal principal) =>
         {
-            var result = await service.CreateIngredient(data);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.CreateIngredient(data, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -76,9 +80,10 @@ public static class MealPlannerEndpoints
             
         }).RequireAuthorization(Roles.Member);
         
-        meal.MapPut("/{id}", async ([FromBody] MealEditDto mealData, MealService service) =>
+        meal.MapPut("/{id}", async ([FromBody] MealEditDto mealData, MealService service, ClaimsPrincipal principal) =>
         {
-            var result = await service.EditMeal(mealData);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.EditMeal(mealData, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -86,9 +91,10 @@ public static class MealPlannerEndpoints
             return Results.Ok();
         }).RequireAuthorization(Roles.Member);
         
-        meal.MapGet("/{id}", async (string id, MealService service) =>
+        meal.MapGet("/{id}", async (string id, MealService service, ClaimsPrincipal principal) =>
         {
-            var result = await service.GetMealById(id);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.GetMealById(id, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -97,9 +103,10 @@ public static class MealPlannerEndpoints
             return Results.Ok(result.Value);
         }).RequireAuthorization(Roles.Member);
         
-        meal.MapDelete("/{id}", async (string id, MealService service) =>
+        meal.MapDelete("/{id}", async (string id, MealService service, ClaimsPrincipal principal) =>
         {
-            var result = await service.DeleteMeal(id);
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.DeleteMeal(id, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);

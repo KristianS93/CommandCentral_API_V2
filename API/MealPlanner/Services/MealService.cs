@@ -24,12 +24,18 @@ public class MealService
         var meals = await _context.Meals
             .Where(m => m.HouseholdId == householdId)
             .Select(n => new MealInfoDto(n.MealId, n.Name))
+            .AsNoTracking()
             .ToListAsync();
         return meals;
     }
-    public async Task<Result> EditMeal(MealEditDto mealData)
+    public async Task<Result> EditMeal(MealEditDto mealData, string householdId)
     {
-        var meal = await _context.Meals.FindAsync(mealData.MealId);
+        if (householdId.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+        var meal = await _context.Meals
+            .FirstOrDefaultAsync(m => m.MealId == mealData.MealId && m.HouseholdId == householdId);
         if (meal is null)
         {
             return Result.Fail("Could not find meal");
@@ -40,9 +46,9 @@ public class MealService
         await _context.SaveChangesAsync();
         return Result.Ok();
     }
-    public async Task<Result<MealDto>> GetMealById(string mealId)
+    public async Task<Result<MealDto>> GetMealById(string mealId, string householdId)
     {
-        if (mealId.IsNullOrEmpty())
+        if (mealId.IsNullOrEmpty() || householdId.IsNullOrEmpty())
         {
             return Result.Fail("Missing meal id");
         }
@@ -50,7 +56,7 @@ public class MealService
         var mealData = await _context.Meals
             .Include(i => i.Ingredients)
             .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.MealId == mealId);
+            .FirstOrDefaultAsync(m => m.MealId == mealId && m.HouseholdId == householdId);
         if (mealData is null)
         {
             return Result.Fail("Meal does not exist");
@@ -61,7 +67,7 @@ public class MealService
             mealData.Ingredients = new List<IngredientModel>();
         }
         
-        var ingredients = mealData.Ingredients.Select(obj => new IngredientDto(obj.IngredientId, obj.Name, obj.Amount)).ToList();
+        var ingredients = mealData.Ingredients.Select(obj => new IngredientDto(obj.IngredientId, obj.MealId, obj.Name, obj.Amount)).ToList();
         var meal = new MealDto(mealData.MealId, mealData.Name, mealData.Description, ingredients);
         return meal;
     }
@@ -85,9 +91,13 @@ public class MealService
         return Result.Ok();
     }
 
-    public async Task<Result> DeleteMeal(string mealId)
+    public async Task<Result> DeleteMeal(string mealId, string householdId)
     {
-        var meal = await _context.Meals.FindAsync(mealId);
+        if (mealId.IsNullOrEmpty() || householdId.IsNullOrEmpty())
+        {
+            return Result.Fail("Missing id");
+        }
+        var meal = await _context.Meals.FirstOrDefaultAsync(m => m.MealId == mealId && m.HouseholdId == householdId);
         if (meal is null)
         {
             return Result.Fail("Error deleting meal");
