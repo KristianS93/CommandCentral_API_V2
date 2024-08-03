@@ -3,6 +3,7 @@ using API;
 using API.GroceryList;
 using API.Household;
 using API.identity;
+using API.MealPlanner;
 using API.SharedAPI;
 using API.SharedAPI.Persistence;
 
@@ -19,6 +20,7 @@ builder.Services.AddSharedServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddHouseholdServices();
 builder.Services.AddGroceryListServices();
+builder.Services.AddMealPlannerServices();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -60,6 +62,7 @@ await app.AddRawTables();
 
 app.AddHouseholdEndpoints();
 app.AddGroceryListEndpoints();
+app.AddMealPlannerEndpoints();
 
 app.Run();
 

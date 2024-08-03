@@ -9,14 +9,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9228794c-c526-4a17-9358-da30d8000fdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/API/appsettings.Prod.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/MealPlanner/Models/MealPlansDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CommandCentralAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/ConfigureAppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/GroceryList/Models/GroceryItemDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/GroceryList/Models/GroceryItemDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/GroceryList/Models/GroceryItemModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/GroceryList/Models/GroceryItemModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Identity/CustomIdentity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/MealPlanner/MealPlannerEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/MealPlanner/MealPlannerEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/MealPlanner/Models/AutoMealPlanDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/MealPlanner/Models/AutoMealPlanDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/MealPlanner/Models/MealCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/MealPlanner/Models/MealCreateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/MealPlanner/Models/MealPlanCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/MealPlanner/Models/MealPlanCreateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/MealPlanner/Services/MealPlanService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/MealPlanner/Services/MealPlanService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/MealPlanner/Services/MealService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/MealPlanner/Services/MealService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,32 +76,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.API: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/kristian/Documents/GitRepos/signalR/ChatApp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeLensConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.API: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/20&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kristian/Documents/GitRepos/signalR/ChatApp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite",
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;,
+      &quot;postgresql&quot;
     ],
-    "rider.external.source.directories": [
-      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/home/kristian/.local/share/Symbols/src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
+      &quot;/home/kristian/.config/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
+      &quot;/home/kristian/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.API: http">
     <configuration name="API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/API/API.csproj" />
@@ -147,6 +151,7 @@
       <workItem from="1721384813108" duration="6084000" />
       <workItem from="1721418737523" duration="1083000" />
       <workItem from="1721480066163" duration="16718000" />
+      <workItem from="1722440971483" duration="9772000" />
     </task>
     <task id="LOCAL-00001" summary="Add relation from Household to users, however only one dbcontext.">
       <option name="closed" value="true" />

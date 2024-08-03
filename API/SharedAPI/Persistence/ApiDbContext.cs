@@ -1,5 +1,6 @@
 using API.GroceryList.Models;
 using API.Household.Models;
+using API.MealPlanner.Models;
 using API.SharedAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,15 +13,28 @@ public class ApiDbContext : DbContext
         
     }
 
-    public DbSet<HouseholdModel> Households { get; set; }
-    public DbSet<HouseholdUsersModel> HouseholdUsers { get; set; }
+    #region Household
+        public DbSet<HouseholdModel> Households { get; set; }
+        public DbSet<HouseholdUsersModel> HouseholdUsers { get; set; }
 
-    public DbSet<InvitationModel> Invitations { get; set; }
-
-    public DbSet<GroceryListModel> GroceryLists { get; set; }
-
-    public DbSet<GroceryItemModel> GroceryListItems { get; set; }
+        public DbSet<InvitationModel> Invitations { get; set; }
+        
+    #endregion
     
+    # region GroceryList
+        public DbSet<GroceryListModel> GroceryLists { get; set; }
+
+        public DbSet<GroceryItemModel> GroceryListItems { get; set; }
+    #endregion
+
+    #region MealPlanner
+
+    public DbSet<IngredientModel> Ingredients { get; set; }
+    public DbSet<MealModel> Meals { get; set; }
+    public DbSet<MealPlanModel> MealPlans { get; set; }
+    public DbSet<MealsInPlan> MealsInPlans { get; set; }
+
+    #endregion
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
