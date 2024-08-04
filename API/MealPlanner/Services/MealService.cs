@@ -14,7 +14,7 @@ public class MealService
         _context = context;
     }
 
-    public async Task<Result<List<MealInfoDto>>> GetMeals(string householdId)
+    public async Task<Result<List<MealIdNameDto>>> GetMeals(string householdId)
     {
         if (householdId.IsNullOrEmpty())
         {
@@ -23,7 +23,7 @@ public class MealService
 
         var meals = await _context.Meals
             .Where(m => m.HouseholdId == householdId)
-            .Select(n => new MealInfoDto(n.MealId, n.Name))
+            .Select(n => new MealIdNameDto(n.MealId, n.Name))
             .AsNoTracking()
             .ToListAsync();
         return meals;

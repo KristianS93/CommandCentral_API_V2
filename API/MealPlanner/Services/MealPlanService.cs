@@ -37,7 +37,8 @@ public class MealPlanService
         var mealInplan = new MealsInPlan
         {
             MealPlanId = mealPlanId,
-            MealId = data.MealId
+            MealId = data.MealId,
+            MealDay = data.MealDay
         };
         await _context.MealsInPlans.AddAsync(mealInplan);
         await _context.SaveChangesAsync();
@@ -54,7 +55,8 @@ public class MealPlanService
             .Where(hh => hh.HouseholdId == householdId)
             .Select(mp => new MealPlansDto(
                 mp.MealPlanId,
-                mp.WeekNo
+                mp.Year,
+                mp.Week
                 ))
             .ToListAsync();
 
@@ -92,10 +94,12 @@ public class MealPlanService
             .Where(mp => mp.MealPlanId == id && mp.HouseholdId == householdId)
             .Select(mp => new MealPlanDto(
                 mp.MealPlanId,
-                mp.WeekNo,
+                mp.Year,
+                mp.Week,
                 mp.Meals!.Select(mip => new MealInfoDto(
                     mip.Meal!.MealId,
-                    mip.Meal.Name
+                    mip.Meal.Name,
+                    mip.MealDay
                 )).ToList()
             ))
             .FirstOrDefaultAsync();
@@ -170,9 +174,19 @@ public class MealPlanService
             return Result.Fail("Missing household");
         }
         
+        // check whether this date is already created 
+
+        var oldMealPlan = await _context.MealPlans.FirstOrDefaultAsync(o => o.HouseholdId == householdId && o.Year == data.Year && o.Week == data.Week);
+        if (oldMealPlan is not null)
+        {
+            return Result.Fail("Meal plan already exist.");
+        }
+        
         var mealPlan = new MealPlanModel
         {
             HouseholdId = householdId,
+            Year = data.Year,
+            Week = data.Week
         };
         if (data.MealIds is not null)
         {
@@ -180,6 +194,7 @@ public class MealPlanService
             {
                 MealPlanId = mealPlan.MealPlanId,
                 MealId = n.MealId,
+                MealDay = n.MealDay
             }).ToList();
             
             Console.WriteLine("Meals: " + meals.Count);
@@ -274,14 +289,16 @@ public class MealPlanService
                         meals.Add(new MealsInPlan
                         {
                             MealPlanId = data.MealPlanid,
-                            MealId = entry.Key
+                            MealId = entry.Key,
+                            MealDay = entry.Value.MealDay
                         });
                     }
                 }
                 mealplan.Meals = meals;
             }
 
-            mealplan.WeekNo = data.Week;
+            mealplan.Year = data.Year;
+            mealplan.Week = data.Week;
         }
 
         await _context.SaveChangesAsync();
