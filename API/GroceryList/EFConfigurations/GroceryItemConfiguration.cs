@@ -9,8 +9,8 @@ public class GroceryItemConfiguration : IEntityTypeConfiguration<GroceryItemMode
     public void Configure(EntityTypeBuilder<GroceryItemModel> builder)
     {
         builder.HasKey(key => key.ItemId);
-        builder.HasOne(g => g.GroceryList)
-            .WithMany()
+        builder.HasOne<GroceryListModel>(g => g.GroceryList)
+            .WithMany(obj => obj.Items)
             .HasForeignKey(key => key.GroceryListId)
             .OnDelete(DeleteBehavior.Cascade);
         
