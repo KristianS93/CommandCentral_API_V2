@@ -29,7 +29,6 @@ namespace API.SharedAPI.Migrations
                         .HasColumnName("itemid");
 
                     b.Property<string>("Amount")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("amount");
 
@@ -41,10 +40,6 @@ namespace API.SharedAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("grocerylistid");
-
-                    b.Property<string>("GroceryListModelGroceryListId")
-                        .HasColumnType("text")
-                        .HasColumnName("grocerylistmodelgrocerylistid");
 
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("timestamp")
@@ -65,9 +60,6 @@ namespace API.SharedAPI.Migrations
 
                     b.HasIndex("GroceryListId")
                         .HasDatabaseName("ix_grocerylistitems_grocerylistid");
-
-                    b.HasIndex("GroceryListModelGroceryListId")
-                        .HasDatabaseName("ix_grocerylistitems_grocerylistmodelgrocerylistid");
 
                     b.ToTable("grocerylistitems", (string)null);
                 });
@@ -331,16 +323,11 @@ namespace API.SharedAPI.Migrations
             modelBuilder.Entity("API.GroceryList.Models.GroceryItemModel", b =>
                 {
                     b.HasOne("API.GroceryList.Models.GroceryListModel", "GroceryList")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("GroceryListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_grocerylistitems_grocerylists_grocerylistid");
-
-                    b.HasOne("API.GroceryList.Models.GroceryListModel", null)
-                        .WithMany("Items")
-                        .HasForeignKey("GroceryListModelGroceryListId")
-                        .HasConstraintName("fk_grocerylistitems_grocerylists_grocerylistmodelgrocerylistid");
 
                     b.Navigation("GroceryList");
                 });

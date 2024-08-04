@@ -131,9 +131,8 @@ namespace API.SharedAPI.Migrations
                     itemid = table.Column<string>(type: "text", nullable: false),
                     grocerylistid = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    amount = table.Column<string>(type: "text", nullable: false),
+                    amount = table.Column<string>(type: "text", nullable: true),
                     picture = table.Column<string>(type: "text", nullable: false),
-                    grocerylistmodelgrocerylistid = table.Column<string>(type: "text", nullable: true),
                     createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
                     lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
@@ -146,11 +145,6 @@ namespace API.SharedAPI.Migrations
                         principalTable: "grocerylists",
                         principalColumn: "grocerylistid",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_grocerylistitems_grocerylists_grocerylistmodelgrocerylistid",
-                        column: x => x.grocerylistmodelgrocerylistid,
-                        principalTable: "grocerylists",
-                        principalColumn: "grocerylistid");
                 });
 
             migrationBuilder.CreateTable(
@@ -204,11 +198,6 @@ namespace API.SharedAPI.Migrations
                 name: "ix_grocerylistitems_grocerylistid",
                 table: "grocerylistitems",
                 column: "grocerylistid");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_grocerylistitems_grocerylistmodelgrocerylistid",
-                table: "grocerylistitems",
-                column: "grocerylistmodelgrocerylistid");
 
             migrationBuilder.CreateIndex(
                 name: "ix_grocerylists_househouldid",
