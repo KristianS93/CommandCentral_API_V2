@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.SharedAPI.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240804122834_InitialAPIMigration")]
+    [Migration("20240804212227_InitialAPIMigration")]
     partial class InitialAPIMigration
     {
         /// <inheritdoc />
@@ -282,15 +282,19 @@ namespace API.SharedAPI.Migrations
                         .HasColumnType("timestamp")
                         .HasColumnName("lastmodified");
 
-                    b.Property<DateTime>("WeekNo")
-                        .HasColumnType("date")
-                        .HasColumnName("weekno");
+                    b.Property<int>("Week")
+                        .HasColumnType("integer")
+                        .HasColumnName("week");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer")
+                        .HasColumnName("year");
 
                     b.HasKey("MealPlanId")
                         .HasName("pk_mealplans");
 
-                    b.HasIndex("HouseholdId")
-                        .HasDatabaseName("ix_mealplans_householdid");
+                    b.HasAlternateKey("HouseholdId", "Week", "Year")
+                        .HasName("ak_mealplans_householdid_week_year");
 
                     b.ToTable("mealplans", (string)null);
                 });
@@ -300,6 +304,10 @@ namespace API.SharedAPI.Migrations
                     b.Property<string>("MealsInPlanId")
                         .HasColumnType("text")
                         .HasColumnName("mealsinplanid");
+
+                    b.Property<string>("MealDay")
+                        .HasColumnType("text")
+                        .HasColumnName("mealday");
 
                     b.Property<string>("MealId")
                         .IsRequired()

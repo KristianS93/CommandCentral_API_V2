@@ -86,13 +86,15 @@ namespace API.SharedAPI.Migrations
                 {
                     mealplanid = table.Column<string>(type: "text", nullable: false),
                     householdid = table.Column<string>(type: "text", nullable: false),
-                    weekno = table.Column<DateTime>(type: "date", nullable: false),
+                    year = table.Column<int>(type: "integer", nullable: false),
+                    week = table.Column<int>(type: "integer", nullable: false),
                     createdat = table.Column<DateTime>(type: "timestamp", nullable: false),
                     lastmodified = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_mealplans", x => x.mealplanid);
+                    table.UniqueConstraint("ak_mealplans_householdid_week_year", x => new { x.householdid, x.week, x.year });
                     table.ForeignKey(
                         name: "fk_mealplans_households_householdid",
                         column: x => x.householdid,
@@ -175,7 +177,8 @@ namespace API.SharedAPI.Migrations
                 {
                     mealsinplanid = table.Column<string>(type: "text", nullable: false),
                     mealid = table.Column<string>(type: "text", nullable: false),
-                    mealplanid = table.Column<string>(type: "text", nullable: false)
+                    mealplanid = table.Column<string>(type: "text", nullable: false),
+                    mealday = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -212,11 +215,6 @@ namespace API.SharedAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "ix_invitations_householdid",
                 table: "invitations",
-                column: "householdid");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_mealplans_householdid",
-                table: "mealplans",
                 column: "householdid");
 
             migrationBuilder.CreateIndex(

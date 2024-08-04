@@ -1,3 +1,3 @@
 namespace API.MealPlanner.Models;
 
-public record MealPlanDto(string MealPlanId, DateTime Week, List<MealInfoDto> Meals);
+public record MealPlanDto(string MealPlanId, int Year, int Week, List<MealInfoDto> Meals);

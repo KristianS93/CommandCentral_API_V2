@@ -9,4 +9,6 @@ public class MealsInPlan
     public MealModel? Meal { get; set; }
     [Required] public string MealPlanId { get; set; } = string.Empty;
     public MealPlanModel? MealPlan { get; set; }
+
+    public string? MealDay { get; set; } = string.Empty;
 }

@@ -11,6 +11,8 @@ public class MealPlanConfiguration : IEntityTypeConfiguration<MealPlanModel>
     {
         builder.HasKey(key => key.MealPlanId);
 
+        builder.HasAlternateKey(key => new { key.HouseholdId, key.Week, key.Year });
+
         builder.HasOne<HouseholdModel>(obj => obj.Household)
             .WithMany()
             .HasForeignKey(key => key.HouseholdId)
@@ -21,8 +23,6 @@ public class MealPlanConfiguration : IEntityTypeConfiguration<MealPlanModel>
             .HasForeignKey(key => key.MealPlanId)
             .OnDelete(DeleteBehavior.Cascade);
         
-        builder.Property(o => o.WeekNo)
-            .HasColumnType("date");
         builder.Property(e => e.CreatedAt)
             .HasColumnType("timestamp");
         builder.Property(e => e.LastModified)
