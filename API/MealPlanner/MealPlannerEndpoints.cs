@@ -157,10 +157,11 @@ public static class MealPlannerEndpoints
         }).RequireAuthorization(Roles.Member);
         
         // get mealplan
-        mealplanner.MapGet("/{id}", async (string mealPlanId, MealPlanService service, ClaimsPrincipal principal) =>
+        mealplanner.MapGet("/{year}/{week}", async (int year, int week, MealPlanService service, ClaimsPrincipal principal) =>
         {
+            var obj = new MealPlanGetDto(year, week);
             var householdId = principal.FindFirst(Claims.Household)!.Value;
-            var result = await service.GetMealplanById(mealPlanId, householdId);
+            var result = await service.GetMealplanById(obj, householdId);
             if (result.IsFailed)
             {
                 return Results.BadRequest(result.Errors);
@@ -236,7 +237,7 @@ public static class MealPlannerEndpoints
         }).RequireAuthorization(Roles.Member);
         
         // transfer to grocery list.
-        mealplanner.MapPut("/groceries/{id}", async (string mealplanId, MealPlanService service, ClaimsPrincipal principal) =>
+        mealplanner.MapPut("/groceries/{mealplanId}", async (string mealplanId, MealPlanService service, ClaimsPrincipal principal) =>
         {
             var householdId = principal.FindFirst(Claims.Household)!.Value;
             
