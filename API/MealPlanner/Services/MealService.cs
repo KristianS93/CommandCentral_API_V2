@@ -67,7 +67,7 @@ public class MealService
             mealData.Ingredients = new List<IngredientModel>();
         }
         
-        var ingredients = mealData.Ingredients.Select(obj => new IngredientDto(obj.IngredientId, obj.MealId, obj.Name, obj.Amount)).ToList();
+        var ingredients = mealData.Ingredients.Select(obj => new MealIngredientDto(obj.IngredientId, obj.Name, obj.Amount)).ToList();
         var meal = new MealDto(mealData.MealId, mealData.Name, mealData.Description, ingredients);
         return meal;
     }
