@@ -8,6 +8,7 @@ public static class SharedAppRegistration
 {
     public static async Task<WebApplication> AddSharedApp(this WebApplication app)
     {
+        app.UseExceptionHandler();
         using var scope = app.Services.CreateScope();
         
         // ensure migration
