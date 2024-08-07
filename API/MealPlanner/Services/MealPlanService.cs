@@ -82,16 +82,16 @@ public class MealPlanService
         await _context.SaveChangesAsync();
         return Result.Ok();
     }
-    public async Task<Result<MealPlanDto>> GetMealplanById(string id, string householdId)
+    public async Task<Result<MealPlanDto>> GetMealplanById(MealPlanGetDto meal, string householdId)
     {
         
-        if (string.IsNullOrEmpty(id))
+        if (string.IsNullOrEmpty(householdId))
         {
             return Result.Fail("No id provided");
         }
 
         var mealplanDto = await _context.MealPlans
-            .Where(mp => mp.MealPlanId == id && mp.HouseholdId == householdId)
+            .Where(mp => mp.Year == meal.Year && mp.Week == meal.Week && mp.HouseholdId == householdId)
             .Select(mp => new MealPlanDto(
                 mp.MealPlanId,
                 mp.Year,
@@ -149,7 +149,7 @@ public class MealPlanService
         {
             return Result.Fail("Error loading grocerylist");
         }
-
+        
         var groceryItems = await _context.MealsInPlans
             .Include(obj => obj.MealPlan)
             .Where(m => m.MealPlanId == id && m.MealPlan!.HouseholdId == householdId)
@@ -162,7 +162,7 @@ public class MealPlanService
                 }))
             .ToListAsync();
         
-        groceryList.Items!.AddRange(groceryItems);
+        await _context.GroceryListItems.AddRangeAsync(groceryItems);
         await _context.SaveChangesAsync();
         return Result.Ok();
     }
