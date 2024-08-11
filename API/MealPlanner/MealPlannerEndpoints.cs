@@ -200,7 +200,7 @@ public static class MealPlannerEndpoints
         
         // edit mealplan
 
-        mealplanner.MapPut("/{id}", async ([FromBody]MealPlanEditDto data, MealPlanService service, ClaimsPrincipal principal) =>
+        mealplanner.MapPut("/", async ([FromBody]MealPlanEditDto data, MealPlanService service, ClaimsPrincipal principal) =>
         {
             var householdId = principal.FindFirst(Claims.Household)!.Value;
             var result = await service.EditMealPlan(data, householdId);
