@@ -261,6 +261,7 @@ public class MealPlanService
 
         var mealplan = await _context.MealPlans.Include(obj => obj.Meals)
             .FirstOrDefaultAsync(key => key.MealPlanId == data.MealPlanid && key.HouseholdId == householdId);
+        
         if (mealplan is null)
         {
             return Result.Fail("Failure getting plan");
@@ -268,29 +269,32 @@ public class MealPlanService
 
         if (data.MealIds is not null)
         {
-            var dict = data.MealIds.ToDictionary(e => e.MealId);
+            var list = data.MealIds.Select(obj => new MealsInPlan() {MealId = obj.MealId, MealDay = obj.MealDay}).ToList();
+            // var dict = data.MealIds.ToDictionary(e => e.MealId);
             if (mealplan.Meals is not null)
             {
                 var meals = mealplan.Meals.ToList();
                 meals.RemoveAll(obj =>
                 {
-                    if (dict.ContainsKey(obj.MealId))
+
+                    if (list.Exists(i => i.MealId == obj.MealId))
                     {
-                        dict.Remove(obj.MealId);
+                        var item = list.Find(i => i.MealId == obj.MealId);
+                        list.Remove(item!);
                         return false;
                     }
                     
                     return true;
                 });
-                if (dict.Count > 0)
+                if (list.Count > 0)
                 {
-                    foreach (var entry in dict)
+                    foreach (var entry in list)
                     {
                         meals.Add(new MealsInPlan
                         {
                             MealPlanId = data.MealPlanid,
-                            MealId = entry.Key,
-                            MealDay = entry.Value.MealDay
+                            MealId = entry.MealId,
+                            MealDay = entry.MealDay
                         });
                     }
                 }
