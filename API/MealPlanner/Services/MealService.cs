@@ -90,6 +90,40 @@ public class MealService
 
         return Result.Ok();
     }
+    
+    public async Task<Result> CreateMealWithIngredients(CreateMealIngredients mealData, string householdId)
+    {
+        if (mealData.Name.IsNullOrEmpty())
+        {
+            Result.Fail("Missing name");
+        }
+
+        var meal = new MealModel
+        {
+            Name = mealData.Name,
+            Description = mealData.Description ?? "",
+            HouseholdId = householdId,
+        };
+        await _context.Meals.AddAsync(meal);
+
+        if (mealData.Ingredients is not null)
+        {
+            var ingredients = mealData.Ingredients.Select(i =>
+            {
+                return new IngredientModel
+                {
+                    MealId = meal.MealId,
+                    Name = i.Name,
+                    Amount = i.Amount ?? ""
+                };
+            }).ToList();
+            await _context.Ingredients.AddRangeAsync(ingredients);
+        }
+        
+        await _context.SaveChangesAsync();
+
+        return Result.Ok();
+    }
 
     public async Task<Result> DeleteMeal(string mealId, string householdId)
     {
