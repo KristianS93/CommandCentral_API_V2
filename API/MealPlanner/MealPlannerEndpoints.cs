@@ -126,6 +126,18 @@ public static class MealPlannerEndpoints
 
             return Results.Created();
         }).RequireAuthorization(Roles.Member);
+        
+        meal.MapPost("/ingredients", async ([FromBody]CreateMealIngredients mealData, MealService service, ClaimsPrincipal principal) =>
+        {
+            var householdId = principal.FindFirst(Claims.Household)!.Value;
+            var result = await service.CreateMealWithIngredients(mealData, householdId);
+            if (result.IsFailed)
+            {
+                return Results.BadRequest(result.Errors);
+            }
+
+            return Results.Created();
+        }).RequireAuthorization(Roles.Member);
 
         #endregion
 
